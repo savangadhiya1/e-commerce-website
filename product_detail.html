@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | Volt Audio</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="top-offer-bar">
+    <p>⚡ FLASH SALE: Premium Volt Audio gear up to 60% off! ⚡</p>
+</div>
+
+<header class="site-header">
+    <div class="navbar-container">
+        <a href="index.html" class="logo">volt</a>
+        <nav class="nav-links">
+            <a href="index.html">🏠 Home</a>
+            <a href="index.html">⚡ All Gear</a>
+            <a href="gifting_store.html">🎁 Gifting Store</a>
+        </nav>
+        <div class="action-items">
+            <a href="login.html" class="action-btn" title="Profile">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </a>
+            <a href="cart.html" class="action-btn cart-icon" title="View Cart">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="container" style="padding: 40px 20px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 40px; background: #1c1c1c; padding: 30px; border-radius: 10px; border: 1px solid #333;">
+        
+        <!-- Product Image -->
+        <div style="flex: 1; min-width: 300px; text-align: center;">
+            <img id="detailImg" src="" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);" alt="Product Image">
+        </div>
+        
+        <!-- Product Details -->
+        <div style="flex: 1; min-width: 300px; color: #fff;">
+            <h1 id="detailName" style="color: #ff4747; margin-top: 0;"></h1>
+            
+            <div style="margin-bottom: 15px; background: #222; display: inline-block; padding: 8px 15px; border-radius: 20px; font-size: 14px; border: 1px solid #444;">
+                <span style="color: gold;" id="detailRating">⭐ 4.8</span> | 
+                <span style="color: #4CAF50; font-weight: bold;" id="detailSold">🛒 100+ Sold</span>
+            </div>
+
+            <p id="detailDesc" style="color: #bbb; font-size: 16px; line-height: 1.6;"></p>
+            
+            <div style="margin: 20px 0; font-size: 24px;">
+                <span id="detailPrice" style="color: #fff; font-weight: bold;">₹0</span>
+                <span id="detailOldPrice" style="color: #888; text-decoration: line-through; font-size: 18px; margin-left: 10px;">₹0</span>
+                <span id="detailDiscount" style="background: rgba(255, 71, 71, 0.2); color: #ff4747; padding: 4px 10px; border-radius: 4px; font-size: 14px; margin-left: 10px;"></span>
+            </div>
+            
+            <div style="margin-top: 30px; display: flex; gap: 15px; align-items: center;">
+                <div style="display: flex; align-items: center; border: 1px solid #444; border-radius: 5px; overflow: hidden;">
+                    <button onclick="adjustQty(-1)" style="background: #222; color: #fff; border: none; padding: 10px 16px; cursor: pointer; font-size: 16px;">-</button>
+                    <span id="qtyVal" style="padding: 10px 18px; background: #121212; font-weight: bold;">1</span>
+                    <button onclick="adjustQty(1)" style="background: #222; color: #fff; border: none; padding: 10px 16px; cursor: pointer; font-size: 16px;">+</button>
+                </div>
+                <button id="detailAddCartBtn" class="btn btn-add-cart" style="flex: 1; padding: 14px; font-size: 16px;">⚡ Add To Cart</button>
+            </div>
+
+            <!-- Features checklist -->
+            <div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 20px; font-size: 14px; color: #aaa;">
+                <p>✔ 1 Year Replacement Warranty Included</p>
+                <p>✔ Free Express Delivery in 2-4 business days</p>
+                <p>✔ 7-Day Hassle-free Returns & Exchanges</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Reviews Box -->
+    <div style="margin-top: 40px; background: #1c1c1c; padding: 30px; border-radius: 10px; border: 1px solid #333;">
+        <h2 style="color: #fff; margin-top: 0;">Verified Customer Reviews</h2>
+        
+        <div id="reviewsContainer" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+            <div style="background: #141414; padding: 15px 20px; border-radius: 8px; border-left: 4px solid #4CAF50;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <strong style="color: #fff;">Aarav Patel</strong>
+                    <span style="color: gold;">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p style="color: #ccc; margin: 0; font-size: 14px;">Incredible build quality and the bass is next level. Battery easily lasts all week!</p>
+            </div>
+            <div style="background: #141414; padding: 15px 20px; border-radius: 8px; border-left: 4px solid #4CAF50;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <strong style="color: #fff;">Priya Sharma</strong>
+                    <span style="color: gold;">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p style="color: #ccc; margin: 0; font-size: 14px;">Looks very premium and comfortable to wear. Definitely worth every rupee.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 20px;">
+            <h3 style="color: #fff; font-size: 18px;">Leave a Review</h3>
+            <form onsubmit="handleReviewSubmit(event)" style="display: flex; flex-direction: column; gap: 10px; max-width: 500px;">
+                <input type="text" id="reviewerName" placeholder="Your Name" required style="padding: 10px; background: #121212; border: 1px solid #444; color: #fff; border-radius: 5px;">
+                <select id="reviewRating" style="padding: 10px; background: #121212; border: 1px solid #444; color: #fff; border-radius: 5px;">
+                    <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                    <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                    <option value="3">⭐⭐⭐ (3/5)</option>
+                </select>
+                <textarea id="reviewerComment" placeholder="Write your experience..." required rows="3" style="padding: 10px; background: #121212; border: 1px solid #444; color: #fff; border-radius: 5px;"></textarea>
+                <button type="submit" style="background: #ff4747; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; width: fit-content;">Submit Review</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/cart.js"></script>
+<script>
+    let currentQty = 1;
+    let selectedProduct = null;
+
+    function adjustQty(delta) {
+        currentQty = Math.max(1, currentQty + delta);
+        document.getElementById('qtyVal').textContent = currentQty;
+    }
+
+    function initProductDetail() {
+        const params = new URLSearchParams(window.location.search);
+        const id = parseInt(params.get('id')) || 1;
+        selectedProduct = VOLT_PRODUCTS.find(p => p.id === id) || VOLT_PRODUCTS[0];
+
+        document.title = `${selectedProduct.name} | Volt Audio`;
+        document.getElementById('detailImg').src = selectedProduct.image;
+        document.getElementById('detailName').textContent = selectedProduct.name;
+        document.getElementById('detailRating').textContent = `⭐ ${selectedProduct.rating} (${selectedProduct.review_count} Reviews)`;
+        document.getElementById('detailSold').textContent = `🛒 ${selectedProduct.total_sold}+ Sold Recent`;
+        document.getElementById('detailDesc').textContent = selectedProduct.description;
+        document.getElementById('detailPrice').textContent = `₹${selectedProduct.price.toLocaleString('en-IN')}`;
+        document.getElementById('detailOldPrice').textContent = `₹${selectedProduct.original_price.toLocaleString('en-IN')}`;
+        document.getElementById('detailDiscount').textContent = selectedProduct.discount;
+
+        document.getElementById('detailAddCartBtn').onclick = () => {
+            addToCart(selectedProduct.id, currentQty);
+        };
+    }
+
+    function handleReviewSubmit(e) {
+        e.preventDefault();
+        const name = document.getElementById('reviewerName').value.trim();
+        const stars = parseInt(document.getElementById('reviewRating').value);
+        const comment = document.getElementById('reviewerComment').value.trim();
+
+        const container = document.getElementById('reviewsContainer');
+        const starStr = '⭐'.repeat(stars);
+
+        const newReview = document.createElement('div');
+        newReview.style.cssText = "background: #141414; padding: 15px 20px; border-radius: 8px; border-left: 4px solid #ff4747; animation: fadeIn 0.4s ease;";
+        newReview.innerHTML = `
+            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                <strong style="color: #fff;">${name} (Just now)</strong>
+                <span style="color: gold;">${starStr}</span>
+            </div>
+            <p style="color: #ccc; margin: 0; font-size: 14px;">${comment}</p>
+        `;
+        container.prepend(newReview);
+
+        e.target.reset();
+        showToast("Review submitted successfully!");
+    }
+
+    document.addEventListener('DOMContentLoaded', initProductDetail);
+</script>
+</body>
+</html>

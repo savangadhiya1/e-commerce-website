@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | Volt Audio</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .cart-layout { display: flex; flex-wrap: wrap; gap: 30px; margin: 40px auto; max-width: 1100px; padding: 0 20px; }
+        .cart-items-panel { flex: 2; min-width: 320px; background: #1c1c1c; border-radius: 10px; border: 1px solid #333; padding: 25px; }
+        .cart-summary-panel { flex: 1; min-width: 280px; background: #1c1c1c; border-radius: 10px; border: 1px solid #333; padding: 25px; height: fit-content; }
+        .cart-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid #2a2a2a; gap: 15px; }
+        .cart-row:last-child { border-bottom: none; }
+        .cart-img { width: 70px; height: 70px; object-fit: contain; border-radius: 8px; background: #121212; padding: 5px; }
+        .qty-control { display: flex; align-items: center; border: 1px solid #444; border-radius: 4px; overflow: hidden; }
+        .qty-btn { background: #222; color: #fff; border: none; padding: 6px 12px; cursor: pointer; }
+        .qty-val { padding: 6px 14px; background: #121212; font-size: 14px; font-weight: bold; color: #fff; }
+        .del-btn { background: none; border: none; color: #ff4747; cursor: pointer; font-size: 18px; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 14px; color: #bbb; font-size: 15px; }
+        .summary-total { font-size: 20px; font-weight: bold; color: #fff; border-top: 1px solid #333; padding-top: 15px; margin-top: 15px; }
+        .checkout-btn { width: 100%; background: #ff4747; color: #fff; border: none; padding: 15px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        .checkout-btn:hover { background: #e03e3e; }
+        
+        /* Modal */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 10000; }
+        .modal-box { background: #1c1c1c; border: 1px solid #333; border-radius: 12px; padding: 30px; width: 90%; max-width: 480px; color: #fff; }
+    </style>
+</head>
+<body>
+
+<div class="top-offer-bar">
+    <p>⚡ FLASH SALE: Premium Volt Audio gear up to 60% off! ⚡</p>
+</div>
+
+<header class="site-header">
+    <div class="navbar-container">
+        <a href="index.html" class="logo">volt</a>
+        <nav class="nav-links">
+            <a href="index.html">🏠 Home</a>
+            <a href="index.html">⚡ All Gear</a>
+            <a href="gifting_store.html">🎁 Gifting Store</a>
+        </nav>
+        <div class="action-items">
+            <a href="login.html" class="action-btn" title="Profile">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </a>
+            <a href="cart.html" class="action-btn cart-icon" title="View Cart">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="cart-layout">
+    <div class="cart-items-panel">
+        <h2 style="color: #fff; margin-top: 0; margin-bottom: 25px;">Your Audio Bag</h2>
+        <div id="cartListContainer">
+            <!-- Rendered by JS -->
+        </div>
+    </div>
+
+    <div class="cart-summary-panel">
+        <h3 style="color: #fff; margin-top: 0;">Order Summary</h3>
+        
+        <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="subtotalVal">₹0</span>
+        </div>
+        <div class="summary-row">
+            <span>Shipping</span>
+            <span style="color: #4CAF50;">FREE</span>
+        </div>
+        <div class="summary-row" id="discountRow" style="display: none; color: #ff4747;">
+            <span>Coupon Discount</span>
+            <span id="discountVal">-₹0</span>
+        </div>
+        <div class="summary-row summary-total">
+            <span>Total Payable</span>
+            <span id="totalVal">₹0</span>
+        </div>
+
+        <!-- Coupon box -->
+        <div style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed #333;">
+            <p style="font-size: 13px; color: #888; margin-bottom: 8px;">Got a Promo Code? (Try <b>FREEVOLT</b>)</p>
+            <div style="display: flex; gap: 8px;">
+                <input type="text" id="couponInput" placeholder="Enter coupon" style="flex: 1; padding: 10px; background: #121212; border: 1px solid #444; color: #fff; border-radius: 4px; text-transform: uppercase;">
+                <button onclick="applyCouponCode()" style="background: #333; color: #fff; border: 1px solid #555; padding: 0 15px; border-radius: 4px; cursor: pointer; font-weight: bold;">Apply</button>
+            </div>
+            <div id="couponMsg" style="font-size: 13px; margin-top: 8px;"></div>
+        </div>
+
+        <button onclick="openCheckoutModal()" class="checkout-btn">⚡ Proceed to Checkout</button>
+    </div>
+</main>
+
+<!-- Checkout Modal Simulation -->
+<div class="modal-overlay" id="checkoutModal">
+    <div class="modal-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="margin: 0; color: #ff4747;">Complete Your Order</h3>
+            <span onclick="closeCheckoutModal()" style="cursor: pointer; font-size: 20px;">✕</span>
+        </div>
+        <form onsubmit="handlePlaceOrder(event)" style="display: flex; flex-direction: column; gap: 14px;">
+            <input type="text" placeholder="Full Name" required style="padding: 12px; background: #121212; border: 1px solid #444; color: #fff; border-radius: 6px;">
+            <input type="tel" placeholder="Mobile Number" required style="padding: 12px; background: #121212; border: 1px solid #444; color: #fff; border-radius: 6px;">
+            <textarea placeholder="Delivery Address & Pincode" required rows="3" style="padding: 12px; background: #121212; border: 1px solid #444; color: #fff; border-radius: 6px;"></textarea>
+            
+            <div style="background: #141414; padding: 12px; border-radius: 6px; border: 1px solid #333; font-size: 14px;">
+                <span>Payment Method: <b>Cash on Delivery / UPI (Simulated)</b></span>
+            </div>
+
+            <button type="submit" class="checkout-btn" style="margin-top: 10px;">Confirm & Place Order</button>
+        </form>
+    </div>
+</div>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/cart.js"></script>
+<script>
+    let appliedDiscountPct = 0;
+
+    function renderCartPage() {
+        const cart = getCart();
+        const container = document.getElementById('cartListContainer');
+
+        if (!cart || cart.length === 0) {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 60px 20px; color: #888;">
+                    <div style="font-size: 50px; margin-bottom: 15px;">🛒</div>
+                    <h3 style="color: #fff; margin-bottom: 10px;">Your cart is empty</h3>
+                    <p style="margin-bottom: 25px;">Discover our futuristic audio drops.</p>
+                    <a href="index.html" class="btn btn-view-details" style="display: inline-block;">Browse Products</a>
+                </div>
+            `;
+            document.getElementById('subtotalVal').textContent = '₹0';
+            document.getElementById('totalVal').textContent = '₹0';
+            document.getElementById('discountRow').style.display = 'none';
+            return;
+        }
+
+        let subtotal = 0;
+        container.innerHTML = cart.map(item => {
+            const lineTotal = item.price * (item.quantity || 1);
+            subtotal += lineTotal;
+            return `
+                <div class="cart-row">
+                    <img src="${item.image}" class="cart-img" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500'">
+                    <div style="flex: 1;">
+                        <h4 style="margin: 0 0 5px 0; color: #fff;">${item.name}</h4>
+                        <div style="color: #888; font-size: 14px;">₹${item.price.toLocaleString('en-IN')}</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="qty-btn" onclick="updateCartQuantity(${item.id}, -1)">-</button>
+                        <span class="qty-val">${item.quantity || 1}</span>
+                        <button class="qty-btn" onclick="updateCartQuantity(${item.id}, 1)">+</button>
+                    </div>
+                    <div style="font-weight: bold; color: #fff; min-width: 80px; text-align: right;">
+                        ₹${lineTotal.toLocaleString('en-IN')}
+                    </div>
+                    <button class="del-btn" onclick="removeFromCart(${item.id})" title="Remove item">🗑</button>
+                </div>
+            `;
+        }).join('');
+
+        const discountAmt = Math.round((subtotal * appliedDiscountPct) / 100);
+        const finalTotal = Math.max(0, subtotal - discountAmt);
+
+        document.getElementById('subtotalVal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+        document.getElementById('totalVal').textContent = `₹${finalTotal.toLocaleString('en-IN')}`;
+
+        if (discountAmt > 0) {
+            document.getElementById('discountRow').style.display = 'flex';
+            document.getElementById('discountVal').textContent = `-₹${discountAmt.toLocaleString('en-IN')}`;
+        } else {
+            document.getElementById('discountRow').style.display = 'none';
+        }
+    }
+
+    function applyCouponCode() {
+        const code = document.getElementById('couponInput').value.trim().toUpperCase();
+        const msg = document.getElementById('couponMsg');
+
+        if (code === 'FREEVOLT') {
+            appliedDiscountPct = 25; // 25% special discount
+            msg.style.color = '#4CAF50';
+            msg.textContent = '🎉 Coupon FREEVOLT Applied! 25% Discount Added.';
+            renderCartPage();
+        } else {
+            msg.style.color = '#ff4747';
+            msg.textContent = 'Invalid coupon code. Try FREEVOLT.';
+        }
+    }
+
+    function openCheckoutModal() {
+        const cart = getCart();
+        if (!cart || cart.length === 0) {
+            showToast("Your cart is empty!", false);
+            return;
+        }
+        document.getElementById('checkoutModal').style.display = 'flex';
+    }
+
+    function closeCheckoutModal() {
+        document.getElementById('checkoutModal').style.display = 'none';
+    }
+
+    function handlePlaceOrder(e) {
+        e.preventDefault();
+        closeCheckoutModal();
+        saveCart([]); // clear cart
+        renderCartPage();
+
+        const orderId = 'VOLT-' + Math.floor(100000 + Math.random() * 900000);
+        alert(`🎉 Order Placed Successfully!\n\nOrder ID: ${orderId}\nThank you for exploring this Volt portfolio showcase. Express dispatch initiated!`);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Check if query has coupon
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('coupon') === 'FREEVOLT') {
+            document.getElementById('couponInput').value = 'FREEVOLT';
+            applyCouponCode();
+        }
+        renderCartPage();
+    });
+</script>
+</body>
+</html>
