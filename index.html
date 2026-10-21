@@ -6,104 +6,60 @@
     <title>Volt | Plug Into Premium Audio</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        /* Embedded Critical CSS - Guarantees 100% beautiful styling on any host */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #f4f5f7; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-        .top-offer-bar { background-color: #eff4f8; color: #1a1a1a; text-align: center; padding: 8px 0; font-size: 13px; font-weight: 600; border-bottom: 1px solid #e3e9ed; }
-        .site-header { background-color: #ffffff; position: sticky; top: 0; z-index: 99999; border-bottom: 1px solid #e3e9ed; padding: 0 5%; }
-        .navbar-container { display: flex; align-items: center; justify-content: space-between; height: 80px; gap: 20px; }
-        .logo { font-size: 32px; font-weight: 900; color: #000000; text-decoration: none; letter-spacing: -1px; text-transform: lowercase; }
-        .nav-links { display: flex; align-items: center; gap: 25px; }
-        .nav-links a, .drop-btn { color: #1a1a1a; text-decoration: none; font-size: 14px; font-weight: 600; cursor: pointer; transition: color 0.2s; }
-        .nav-links a:hover, .dropdown:hover .drop-btn { color: #ff0000; }
-        .search-box { flex: 0 1 320px; }
-        .search-box form { display: flex; background: #f4f5f7; border-radius: 20px; overflow: hidden; padding: 2px; border: 1px solid #e3e9ed; }
-        .search-box input { width: 100%; padding: 10px 18px; background: transparent; border: none; outline: none; font-size: 14px; color: #1a1a1a; }
-        .action-items { display: flex; align-items: center; gap: 20px; font-size: 18px; }
-        .dropdown { position: relative; padding: 10px 0; }
-        .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background-color: #ffffff; min-width: 180px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1); border: 1px solid #e3e9ed; border-radius: 8px; overflow: hidden; z-index: 1000; }
-        .dropdown-content.right-align { left: auto; right: 0; }
-        .dropdown-content a { color: #333333; padding: 12px 20px; display: block; font-size: 14px; border-bottom: 1px solid #f4f5f7; text-decoration: none; }
-        .dropdown-content a:hover { background-color: #f4f5f7; color: #ff0000; }
-        .dropdown:hover .dropdown-content { display: block; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
-        .category-pills-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin: 10px 0 30px 0; }
-        .pill-btn { background: #ffffff; color: #1a1a1a; padding: 10px 20px; border-radius: 25px; font-size: 14px; font-weight: 600; border: 1px solid #e3e9ed; cursor: pointer; transition: all 0.2s ease; }
-        .pill-btn:hover, .pill-btn.active { background: #1a1a1a; color: #ffffff; border-color: #1a1a1a; }
-        .filter-ribbon { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .section-title { font-size: 24px; font-weight: 700; color: #1a1a1a; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; }
-        .product-card { background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: 1px solid #e3e9ed; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
-        .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-        .product-card .img-wrap { width: 100%; height: 230px; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center; padding: 15px; position: relative; }
-        .product-card .img-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .product-card .card-details { padding: 18px; display: flex; flex-direction: column; flex: 1; }
-        .rating-bar { font-size: 13px; color: #666; margin-bottom: 8px; }
-        .product-card h3 { font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; line-height: 1.3; min-height: 42px; }
-        .price-row { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; }
-        .current-price { font-size: 18px; font-weight: 700; color: #000; }
-        .old-price { font-size: 14px; color: #999; text-decoration: line-through; }
-        .discount-tag { font-size: 12px; color: #00b894; font-weight: 700; background: #e6f9f4; padding: 2px 6px; border-radius: 4px; }
-        .product-card .button-group { display: flex; gap: 8px; margin-top: auto; }
-        .product-card .button-group .btn { flex: 1; text-align: center; padding: 10px 5px; font-size: 13px; border-radius: 6px; text-decoration: none; font-weight: 700; cursor: pointer; transition: 0.2s; border: none; }
-        .btn-view-details { background: #222; color: #fff !important; }
-        .btn-view-details:hover { background: #444; }
-        .btn-add-cart { background: #ff4747; color: #fff !important; }
-        .btn-add-cart:hover { background: #e03e3e; }
-        
-        /* Header cart icon & badge */
-        .cart-anchor-box { position: relative; display: inline-flex; align-items: center; text-decoration: none; cursor: pointer; }
-        .cart-count-badge { position: absolute; top: -8px; right: -10px; background: #ff4747; color: white; font-size: 11px; font-weight: bold; border-radius: 50%; padding: 2px 6px; min-width: 18px; text-align: center; }
-        
-        /* Footer styling */
-        .volt-info-section { background: #121212; color: #fff; padding: 60px 20px; border-top: 1px solid #222; margin-top: 50px; }
-        .volt-info-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .info-box { background: #1c1c1c; padding: 25px; border-radius: 10px; border: 1px solid #333; }
-        .info-box h3 { color: #ff4747; margin-top: 0; margin-bottom: 15px; font-size: 18px; letter-spacing: 1px; }
-        .info-box p { color: #bbb; line-height: 1.6; font-size: 14px; margin-bottom: 12px; }
-        .info-box ul { list-style: none; padding: 0; }
-        .info-box ul li { margin-bottom: 10px; color: #bbb; font-size: 14px; }
-        .site-footer-bottom { background: #0a0a0a; color: #888; padding: 20px; text-align: center; font-size: 13px; }
-        
-        /* Chatbot Widget */
-        .chatbot-btn { position: fixed; bottom: 20px; right: 20px; background: #ff4747; color: #fff; border: none; border-radius: 50%; width: 56px; height: 56px; font-size: 24px; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 71, 71, 0.4); z-index: 9999; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
-        .chatbot-btn:hover { transform: scale(1.1); }
-        .chat-window { position: fixed; bottom: 85px; right: 20px; width: 320px; background: #1c1c1c; border-radius: 10px; border: 1px solid #333; box-shadow: 0 5px 25px rgba(0,0,0,0.5); display: none; flex-direction: column; overflow: hidden; z-index: 9999; }
-        .chat-header { background: #222; padding: 12px 16px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; color: #fff; font-weight: bold; font-size: 14px; }
-        .close-chat { cursor: pointer; color: #ff4747; font-size: 18px; font-weight: bold; }
-        .chat-body { padding: 12px; height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; background: #121212; }
-        .message { max-width: 82%; padding: 8px 12px; border-radius: 12px; font-size: 13px; line-height: 1.4; }
-        .user-msg { background: #ff4747; color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; }
-        .bot-msg { background: #2a2a2a; color: #eee; align-self: flex-start; border-bottom-left-radius: 2px; }
-        .chat-footer { padding: 10px; background: #222; border-top: 1px solid #333; display: flex; gap: 8px; }
-        .chat-input { flex: 1; padding: 8px 14px; border: 1px solid #444; border-radius: 20px; background: #121212; color: #fff; outline: none; font-size: 13px; }
-        .send-btn { background: none; border: none; color: #ff4747; font-size: 18px; cursor: pointer; }
+        /* Toast notification for Add To Cart */
+        .toast-notify {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #121212;
+            color: #fff;
+            border: 1px solid #ff4747;
+            padding: 14px 28px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 100000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .toast-notify.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
 
 <div class="top-offer-bar">
-    <p>⚡ FLASH SALE: Premium Volt Audio gear up to 60% off! ⚡</p>
+    <p id="offer-bar-text">⚡ FLASH SALE: Premium Volt Audio gear up to 60% off! ⚡</p>
 </div>
 
 <header class="site-header">
     <div class="navbar-container">
+        <!-- Logo -->
         <a href="index.html" class="logo">volt</a>
         
+        <!-- Navigation Strip Links Running Horizontally -->
         <nav class="nav-links">
             <a href="index.html">🏠 Home</a>
 
             <div class="dropdown">
                 <span class="drop-btn">Categories ▾</span>
                 <div class="dropdown-content">
-                    <a href="javascript:void(0)" onclick="filterCategory(1)">⌚ Smartwatches</a>
-                    <a href="javascript:void(0)" onclick="filterCategory(2)">🎧 Headphones</a>
-                    <a href="javascript:void(0)" onclick="filterCategory(3)">📶 Neckbands</a>
-                    <a href="javascript:void(0)" onclick="filterCategory(4)">🎵 Earbuds</a>
-                    <a href="javascript:void(0)" onclick="filterCategory(5)">🔊 Speakers</a>
+                    <a href="index.html?category=1">Smartwatches</a>
+                    <a href="index.html?category=2">Headphones</a>
+                    <a href="index.html?category=3">Neckbands</a>
+                    <a href="index.html?category=4">Earbuds</a>
+                    <a href="index.html?category=5">Speakers</a>
                 </div>
             </div>
 
+            <!-- Gifting Store Link -->
             <a href="gifting_store.html">🎁 Gifting Store</a>
 
             <div class="dropdown">
@@ -111,60 +67,73 @@
                 <div class="dropdown-content">
                     <a href="#about-us">ℹ️ About Us</a>
                     <a href="#contact-us">📞 Contact Us</a>
-                    <a href="#location">📍 Location</a> 
+                    <a href="#location">📍 Location</a>
+                    <a href="admin_login.html">⚡ Admin Portal</a>
                 </div>
             </div>
         </nav>
 
+        <!-- Search input box area -->
         <div class="search-box">
-            <form onsubmit="event.preventDefault(); handleSearch();">
-                <input type="text" id="searchInput" placeholder='Search "Speakers", "Headphones"...' oninput="handleSearch()">
+            <form class="volt-search-form">
+                <input type="text" name="search" id="searchInput" placeholder='Search "Speakers", "Headphones"...'>
             </form>
         </div>
 
+        <!-- Action Grid Icons -->
         <div class="action-items">
-            <div class="dropdown">
-                <a href="login.html" class="drop-btn" style="text-decoration:none;">👤 Account</a>
+            <!-- 👤 Dropdown Profile Menu -->
+            <div class="dropdown profile-dropdown">
+                <span class="drop-btn">👤 Profile</span>
                 <div class="dropdown-content right-align">
-                    <a href="login.html">Sign In / Register</a>
+                    <div id="user-status-slot">
+                        <a href="login.html" class="btn" style="margin-right: 10px; background: #ff4747; color: #fff;">👤 User Login</a>
+                    </div>
                 </div>
             </div>
-
-            <a href="cart.html" class="cart-anchor-box" title="View Cart">
-                🛒
-                <span class="cart-count-badge" id="headerCartCount">0</span>
-            </a>
+            
+            <!-- 🛒 Clean Cart Action Wrapper -->
+            <div class="header-user-actions">
+                <a href="cart.html" class="cart-anchor-box" title="View Storage Matrix Cart">
+                    <img class="cart-icon-img" src="assets/images/cart-icon.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1170/1170678.png'" alt="Cart Grid View">
+                    <span class="cart-count-badge" style="display: none;">0</span>
+                </a>
+            </div>
         </div>
     </div>
 </header>
 
 <main class="container">
     <section class="category-pills-row">
-        <button class="pill-btn active" onclick="filterCategory(0, this)">⚡ All Gear</button>
-        <button class="pill-btn" onclick="filterCategory(1, this)">⌚ Smartwatches</button>
-        <button class="pill-btn" onclick="filterCategory(2, this)">🎧 Headphones</button>
-        <button class="pill-btn" onclick="filterCategory(3, this)">📶 Neckbands</button>
-        <button class="pill-btn" onclick="filterCategory(4, this)">🎵 Earbuds</button>
-        <button class="pill-btn" onclick="filterCategory(5, this)">🔊 Speakers</button>
+        <a href="index.html" class="pill-btn" id="pill-all">⚡ All Gear</a>
+        <a href="index.html?category=1" class="pill-btn" id="pill-1">⌚ Smartwatches</a>
+        <a href="index.html?category=2" class="pill-btn" id="pill-2">🎧 Headphones</a>
+        <a href="index.html?category=3" class="pill-btn" id="pill-3">📶 Neckbands</a>
+        <a href="index.html?category=4" class="pill-btn" id="pill-4">🎵 Earbuds</a>
+        <a href="index.html?category=5" class="pill-btn" id="pill-5">🔊 Speakers</a>
     </section>
 
     <div class="filter-ribbon">
-        <h2 class="section-title" id="catalogTitle">Trending Storefront</h2>
+        <h2 class="section-title" id="sectionTitle">Trending Storefront</h2>
     </div>
 
-    <div class="product-grid" id="productsGrid">
-        <!-- Rendered by JS -->
+    <div class="product-grid" id="productGrid">
+        <!-- Rendered dynamically by JavaScript via VoltDB -->
     </div>
 </main>
 
-<!-- Footer section -->
+<!-- ================= START VOLT FOOTER INFO SECTION ================= -->
 <section class="volt-info-section">
     <div class="volt-info-container">
+        
+        <!-- 1. About Us -->
         <div class="info-box" id="about-us">
             <h3>⚡ ABOUT VOLT</h3>
             <p>Volt is a next-generation audio and smart gadgets brand. We deliver premium quality headphones, wireless earbuds, smartwatches, and speakers built with futuristic design elements and exceptional sound engineering.</p>
+            <p>Our mission is to provide high-end technology accessible to everyone.</p>
         </div>
 
+        <!-- 2. Contact Us -->
         <div class="info-box" id="contact-us">
             <h3>📞 CONTACT HUB</h3>
             <p>Reach out to our support matrix for any inquiries or assistance:</p>
@@ -175,194 +144,121 @@
             </ul>
         </div>
 
+        <!-- 3. Location -->
         <div class="info-box" id="location">
-            <h3>📍 HUB LOCATION</h3>
-            <p>Volt Labs Inc. - Cyber City, Gurugram, India</p>
-            <p style="color: #4CAF50; font-weight: bold;">✔ Express Pan-India Shipping Active</p>
+            <h3>📍 LIVE MATRIX LOCATION</h3>
+            <p>Our primary R&D and distribution hub:</p>
+            <div class="map-responsive">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59049.77126131375!2d70.74836643261763!3d22.292723652156824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959c98ac91ccfb5%3A0xc34cf05c2a125348!2sRajkot%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
         </div>
+
     </div>
 </section>
 
+<!-- Copyright Footer -->
 <footer class="site-footer-bottom">
-    <p>&copy; 2026 VOLT Audio Gear India. Live Portfolio Showcase Edition.</p>
+    <div class="container">
+        <p>&copy; 2026 VOLT Gear India. All rights reserved. Matrix ID: VLT-IN-HYBRID-734.</p>
+    </div>
 </footer>
 
-<!-- Interactive Chatbot -->
-<button class="chatbot-btn" onclick="toggleChat()" title="Chat with Volt AI">💬</button>
-<div class="chat-window" id="chatWindow">
-    <div class="chat-header">
-        <span>⚡ Volt AI Assistant</span>
-        <span class="close-chat" onclick="toggleChat()">✕</span>
-    </div>
-    <div class="chat-body" id="chatBody">
-        <div class="message bot-msg">Hi! I am Volt AI. Ask me about our headphones, watches, or discounts!</div>
-    </div>
-    <div class="chat-footer">
-        <input type="text" id="chatInput" class="chat-input" placeholder="Type here..." onkeypress="if(event.key==='Enter')sendMessage()">
-        <button class="send-btn" onclick="sendMessage()">➤</button>
-    </div>
+<!-- Toast notification element -->
+<div id="toastNotification" class="toast-notify">
+    <span>⚡</span>
+    <span id="toastMsg">Added to cart successfully!</span>
 </div>
 
+<!-- Database & Common Component Scripts -->
+<script src="assets/js/db.js"></script>
+<script src="assets/js/common.js"></script>
+
 <script>
-    // Embedded Product Dataset
-    const VOLT_PRODUCTS = [
-        { id: 1, name: "Volt Rockerz Futuristic Edition", description: "Next-gen over-ear headphones featuring carbon fiber composite drivers, adaptive ANC, and up to 40 hours of playback.", price: 2499, original_price: 4999, discount: "50% off", image: "assets/images/volt-headphone-futuristic.png", category_id: 2, category_name: "Headphones", rating: 4.8, total_sold: 142 },
-        { id: 2, name: "Volt Sonic Boom 5", description: "Flagship premium speaker featuring an illuminated AMOLED micro-casing display and thunderous 360-degree soundstage.", price: 3299, original_price: 7999, discount: "58% off", image: "assets/images/Volt Sonic Boom 5.png", category_id: 5, category_name: "Speakers", rating: 4.9, total_sold: 98 },
-        { id: 3, name: "The VOLT BassBuds", description: "Highly ergonomic wireless neckband utilizing dynamic graphene audio soundstages and flexible lightweight structural bands.", price: 1799, original_price: 3999, discount: "55% off", image: "assets/images/The VOLT BassBuds.png", category_id: 3, category_name: "Neckbands", rating: 4.7, total_sold: 215 },
-        { id: 4, name: "smart watche x1", description: "The ultimate rugged fitness tracker featuring real-time heart rate sensor, sapphire glass and multi-day battery endurance.", price: 2222, original_price: 4444, discount: "50% off", image: "assets/images/The VOLT FitWatch X1.png", category_id: 1, category_name: "Smartwatches", rating: 4.5, total_sold: 84 },
-        { id: 5, name: "Volt Pods E1", description: "Best-selling true wireless earbuds engineered with low latency gaming mode, punchy bass, and quick charge case.", price: 1199, original_price: 2299, discount: "50% off", image: "assets/images/Volt Pods E1.png", category_id: 4, category_name: "Earbuds", rating: 4.6, total_sold: 340 },
-        { id: 6, name: "Volt Sonic Over-Ear Headphones", description: "Active Noise Cancellation (ANC), 40-hour battery life, Deep Bass Drivers, Lightweight Comfort Design, Bluetooth 5.2.", price: 5999, original_price: 7999, discount: "25% off", image: "assets/images/Volt Sonic (V-HP01).png", category_id: 2, category_name: "Headphones", rating: 4.9, total_sold: 67 },
-        { id: 7, name: "Volt Pulse Smartwatch", description: "1.4\" HD Retina Display, Heart Rate & SpO2 Monitor, 5ATM Water Resistance, Built-in GPS, Multi-Sport Tracking.", price: 2499, original_price: 4999, discount: "50% off", image: "assets/images/Volt Pulse (V-SW05).png", category_id: 1, category_name: "Smartwatches", rating: 4.8, total_sold: 189 },
-        { id: 8, name: "Volt Flex Neckband Earphones", description: "Flex-Form Cable, Magnetic Earbuds, 25-hour Playtime, Environmental Noise Cancellation (ENC), Quick Charge.", price: 2499, original_price: 4999, discount: "50% off", image: "assets/images/Volt Flex (V-NB20).png", category_id: 3, category_name: "Neckbands", rating: 4.6, total_sold: 112 },
-        { id: 9, name: "Volt Blast Portable Speaker", description: "360-Degree Sound, IPX7 Waterproof, 20-hour Playtime, Wireless Stereo Pairing (TWS), Integrated Lanyard.", price: 2899, original_price: 5599, discount: "50% off", image: "assets/images/Volt Blast (V-PK30).png", category_id: 5, category_name: "Speakers", rating: 4.7, total_sold: 76 },
-        { id: 10, name: "Volt Budz Wireless Earbuds", description: "True Wireless via Bluetooth 5.3, In-Ear Detection, Touch Controls, Transparency Mode, 28-hour battery.", price: 1199, original_price: 2299, discount: "50% off", image: "assets/images/Volt Budz (V-TW40).png", category_id: 4, category_name: "Earbuds", rating: 4.5, total_sold: 154 },
-        { id: 11, name: "VOLT 'QUANTUM'", description: "A premium smartwatch featuring a durable casing, titanium accents and a customizable analog-digital face.", price: 1599, original_price: 2499, discount: "50% off", image: "assets/images/VOLT 'QUANTUM'.png", category_id: 1, category_name: "Smartwatches", rating: 4.8, total_sold: 63 },
-        { id: 12, name: "VOLT 'ARC' Over-Ear", description: "Brushed gunmetal grey headphones with cognac-brown leather memory foam cushions. Acoustic soundstage tuned by audiophiles.", price: 1799, original_price: 2199, discount: "60% off", image: "assets/images/VOLT 'ARC' Over-Ear.png", category_id: 2, category_name: "Headphones", rating: 4.9, total_sold: 120 },
-        { id: 13, name: "VOLT 'FLUX' Neckband", description: "Matte-black silicone neckband with electric blue inner lining, CNC-machined alloy ends, and 30-hour battery life.", price: 899, original_price: 1299, discount: "50% off", image: "assets/images/VOLT 'FLUX' Neckband.png", category_id: 3, category_name: "Neckbands", rating: 4.4, total_sold: 230 },
-        { id: 14, name: "VOLT 'PRISMA' Portable Speaker", description: "Multi-faceted geometrical enclosure wrapped in acoustic mesh with bronze-gold metallic highlights and crisp 30W drivers.", price: 1699, original_price: 2499, discount: "50% off", image: "assets/images/VOLT 'PRISMA' Portable Speaker.png", category_id: 5, category_name: "Speakers", rating: 4.8, total_sold: 92 },
-        { id: 15, name: "VOLT 'ZENITH' TWS Earbuds", description: "Faceted geometric shells with active ambient noise reduction, smart touch surfaces, and ultra-compact carry case.", price: 499, original_price: 1199, discount: "50% off", image: "assets/images/VOLT 'ZENITH' TWS Earbuds.png", category_id: 4, category_name: "Earbuds", rating: 4.7, total_sold: 410 }
-    ];
+    document.addEventListener('DOMContentLoaded', function () {
+        // Parse URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryId = parseInt(urlParams.get('category')) || 0;
+        const searchQuery = urlParams.get('search') || '';
 
-    let currentCategory = 0;
-
-    function getCart() {
-        try { return JSON.parse(localStorage.getItem('volt_cart')) || []; } catch(e) { return []; }
-    }
-
-    function saveCart(cart) {
-        localStorage.setItem('volt_cart', JSON.stringify(cart));
-        updateCartBadge();
-    }
-
-    function updateCartBadge() {
-        const cart = getCart();
-        const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-        const el = document.getElementById('headerCartCount');
-        if (el) el.textContent = total;
-    }
-
-    function showToast(msg) {
-        let toast = document.getElementById('volt-toast');
-        if (!toast) {
-            toast = document.createElement('div');
-            toast.id = 'volt-toast';
-            toast.style.cssText = "position:fixed;top:20px;right:20px;background:#ff4747;color:#fff;padding:12px 20px;border-radius:8px;font-weight:600;font-size:14px;z-index:999999;box-shadow:0 4px 15px rgba(0,0,0,0.3);transition:0.3s;";
-            document.body.appendChild(toast);
-        }
-        toast.textContent = "⚡ " + msg;
-        toast.style.display = "block";
-        toast.style.opacity = "1";
-        clearTimeout(window._t);
-        window._t = setTimeout(() => { toast.style.opacity = "0"; setTimeout(() => toast.style.display = "none", 300); }, 2500);
-    }
-
-    function addToCart(productId) {
-        const product = VOLT_PRODUCTS.find(p => p.id === parseInt(productId));
-        if (!product) return;
-        let cart = getCart();
-        const idx = cart.findIndex(i => i.id === product.id);
-        if (idx > -1) {
-            cart[idx].quantity = (cart[idx].quantity || 1) + 1;
+        // Update active category pill
+        if (categoryId > 0) {
+            const activePill = document.getElementById(`pill-${categoryId}`);
+            if (activePill) activePill.classList.add('active');
         } else {
-            cart.push({ id: product.id, name: product.name, price: product.price, image: product.image, quantity: 1 });
+            document.getElementById('pill-all').classList.add('active');
         }
-        saveCart(cart);
-        showToast(`Added ${product.name} to cart!`);
-    }
 
-    function renderProducts(list) {
-        const grid = document.getElementById('productsGrid');
-        if (!list || list.length === 0) {
-            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:50px;color:#888;">No products found.</div>';
+        // Set search input value if search active
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput && searchQuery) {
+            searchInput.value = searchQuery;
+            document.getElementById('sectionTitle').textContent = `Search Results for "${searchQuery}"`;
+        }
+
+        // Fetch products from VoltDB
+        const products = window.VoltDB.getProducts(categoryId, searchQuery);
+        const grid = document.getElementById('productGrid');
+
+        if (!products || products.length === 0) {
+            grid.innerHTML = `
+                <div class="no-products-box">
+                    <p style="font-size: 18px; color: #666; margin-bottom: 10px;">🔍 No matching products found.</p>
+                    <a href="index.html" class="pill-btn active" style="display:inline-block; margin-top: 15px;">View All Gear</a>
+                </div>
+            `;
             return;
         }
 
-        grid.innerHTML = list.map(p => {
-            const safeImg = encodeURI(p.image);
+        grid.innerHTML = products.map(product => {
+            const imgSrc = (product.image.startsWith('http')) 
+                ? product.image 
+                : `assets/images/${product.image}`;
+            
+            const price = Number(product.price).toLocaleString();
+            const originalPrice = Number(product.original_price).toLocaleString();
+
             return `
-            <div class="product-card">
-                <div class="img-wrap">
-                    <img src="${safeImg}" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500'" alt="${p.name}">
+                <div class="product-card">
+                    <div class="img-wrap">
+                        <img src="${imgSrc}" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500'" alt="${product.name}">
+                    </div>
+                    
+                    <div class="card-details">
+                        <div class="rating-bar" style="font-size: 13px; color: #bbb; margin-bottom: 8px;">
+                            <span style="color: gold;">⭐ ${product.avg_rating}</span> | 
+                            <span style="color: #4CAF50; font-weight: bold;">🛒 ${product.total_sold} Sold</span>
+                        </div>
+                        
+                        <h3>${product.name}</h3>
+                        
+                        <div class="price-row">
+                            <span class="current-price">₹${price}</span>
+                            <span class="old-price">₹${originalPrice}</span>
+                            <span class="discount-tag">${product.discount}</span>
+                        </div>
+                        
+                        <div class="button-group">
+                            <a href="product_detail.html?id=${product.id}" class="btn btn-view-details">View Details</a>
+                            <button class="btn btn-add-cart" onclick="quickAddToCart(${product.id}, '${product.name.replace(/'/g, "\\'")}')">Add To Cart</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-details">
-                    <div class="rating-bar">
-                        <span style="color:gold;">⭐ ${p.rating}</span> | 
-                        <span style="color:#00b894;font-weight:bold;">🛒 ${p.total_sold} Sold</span>
-                    </div>
-                    <h3>${p.name}</h3>
-                    <div class="price-row">
-                        <span class="current-price">₹${p.price.toLocaleString('en-IN')}</span>
-                        <span class="old-price">₹${p.original_price.toLocaleString('en-IN')}</span>
-                        <span class="discount-tag">${p.discount}</span>
-                    </div>
-                    <div class="button-group">
-                        <a href="product_detail.html?id=${p.id}" class="btn btn-view-details">View Details</a>
-                        <button onclick="addToCart(${p.id})" class="btn btn-add-cart">Add To Cart</button>
-                    </div>
-                </div>
-            </div>`;
+            `;
         }).join('');
-    }
-
-    function filterCategory(catId, btn) {
-        currentCategory = catId;
-        if (btn) {
-            document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        }
-        const names = { 1: "Smartwatches", 2: "Headphones", 3: "Neckbands", 4: "Earbuds", 5: "Speakers" };
-        document.getElementById('catalogTitle').textContent = catId > 0 ? names[catId] : "Trending Storefront";
-
-        let filtered = catId > 0 ? VOLT_PRODUCTS.filter(p => p.category_id === catId) : VOLT_PRODUCTS;
-        const q = document.getElementById('searchInput').value.trim().toLowerCase();
-        if (q) filtered = filtered.filter(p => p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q));
-        renderProducts(filtered);
-    }
-
-    function handleSearch() {
-        const q = document.getElementById('searchInput').value.trim().toLowerCase();
-        let filtered = currentCategory > 0 ? VOLT_PRODUCTS.filter(p => p.category_id === currentCategory) : VOLT_PRODUCTS;
-        if (q) {
-            filtered = filtered.filter(p => p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q));
-            document.getElementById('catalogTitle').textContent = `Search results for "${q}"`;
-        } else {
-            document.getElementById('catalogTitle').textContent = currentCategory > 0 ? "Category Gear" : "Trending Storefront";
-        }
-        renderProducts(filtered);
-    }
-
-    function toggleChat() {
-        const c = document.getElementById('chatWindow');
-        c.style.display = c.style.display === 'flex' ? 'none' : 'flex';
-    }
-
-    function sendMessage() {
-        const inp = document.getElementById('chatInput');
-        const txt = inp.value.trim();
-        if (!txt) return;
-        const body = document.getElementById('chatBody');
-        body.innerHTML += `<div class="message user-msg">${txt}</div>`;
-        inp.value = '';
-        body.scrollTop = body.scrollHeight;
-
-        setTimeout(() => {
-            let reply = "Hello! ⚡ You can ask about our 'headphones', 'smartwatches', 'shipping', or promo codes!";
-            const low = txt.toLowerCase();
-            if (/hi|hello|hey/.test(low)) reply = "Welcome to VOLT Audio! How can I help you pick the best audio gear?";
-            else if (/shipping|delivery/.test(low)) reply = "We offer FREE Pan-India Express shipping (2-4 business days)!";
-            else if (/coupon|discount|free/.test(low)) reply = "Use coupon 'FREEVOLT' at checkout for special discount!";
-            else if (/watch/.test(low)) reply = "Check our smartwatches like Volt Pulse & Quantum starting from ₹1,599!";
-            else if (/headphone|bass/.test(low)) reply = "Volt Rockerz Futuristic Edition with ANC is our top rated choice!";
-            body.innerHTML += `<div class="message bot-msg">${reply}</div>`;
-            body.scrollTop = body.scrollHeight;
-        }, 400);
-    }
-
-    // Auto load on start
-    document.addEventListener('DOMContentLoaded', () => {
-        renderProducts(VOLT_PRODUCTS);
-        updateCartBadge();
     });
+
+    function showToast(message) {
+        const toast = document.getElementById('toastNotification');
+        const msg = document.getElementById('toastMsg');
+        msg.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+
+    function quickAddToCart(productId, productName) {
+        window.VoltDB.addToCart(productId, 1);
+        showToast(`⚡ ${productName} added to cart!`);
+    }
 </script>
 </body>
 </html>

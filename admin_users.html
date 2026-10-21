@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volt | Customer Accounts Matrix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        :root {
+            --bg-base: #0b0c10;
+            --bg-surface: #13141c;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --volt-red: #ff4747;
+            --volt-red-hover: #ff2a2a;
+            --accent-green: #10b981;
+            --accent-blue: #3b82f6;
+            --text-primary: #ffffff;
+            --text-secondary: #9da3af;
+        }
+        body { background-color: var(--bg-base); color: var(--text-primary); font-family: 'Outfit', 'Segoe UI', sans-serif; margin: 0; }
+        .admin-nav { background: var(--bg-surface); border-bottom: 1px solid var(--border-subtle); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .admin-brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 800; font-size: 20px; }
+        .nav-actions { display: flex; gap: 12px; align-items: center; }
+        .nav-btn { padding: 9px 18px; border-radius: 6px; font-size: 13.5px; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: 0.2s; }
+        .nav-btn-secondary { background: #181924; color: var(--text-secondary); border-color: var(--border-subtle); }
+        .nav-btn-secondary:hover { color: #fff; background: #1f202e; }
+
+        .dashboard-container { max-width: 1200px; margin: 40px auto; padding: 0 25px; }
+        .data-section { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 25px; }
+        .admin-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .admin-table th { background: rgba(255, 255, 255, 0.03); color: var(--text-secondary); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; padding: 14px 16px; border-bottom: 1px solid var(--border-subtle); }
+        .admin-table td { padding: 14px 16px; border-bottom: 1px solid var(--border-subtle); font-size: 14px; vertical-align: middle; }
+    </style>
+</head>
+<body>
+
+<header class="admin-nav">
+    <a href="admin_dashboard.html" class="admin-brand">
+        ⚡ VOLT <span style="color:var(--volt-red); font-size:13px; font-weight:600; border:1px solid rgba(255,71,71,0.4); padding:3px 8px; border-radius:4px;">CUSTOMER MATRIX</span>
+    </a>
+    
+    <div class="nav-actions">
+        <a href="admin_dashboard.html" class="nav-btn nav-btn-secondary">⚡ Dashboard</a>
+        <a href="index.html" target="_blank" class="nav-btn nav-btn-secondary">👁️ Storefront</a>
+    </div>
+</header>
+
+<main class="dashboard-container">
+    <div class="data-section">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+            <h2 style="margin: 0; font-size: 20px;">Registered User Matrix</h2>
+            <span style="color: var(--text-secondary); font-size: 14px;" id="totalUserCount">Total: 0</span>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Email Address</th>
+                        <th>Registration Date</th>
+                        <th>Total Orders</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                    <!-- Rendered dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<script src="assets/js/db.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (!window.VoltDB.isAdminLoggedIn()) {
+            window.location.href = 'admin_login.html';
+            return;
+        }
+
+        const users = window.VoltDB.getUsers();
+        const orders = window.VoltDB.getAllOrders();
+        document.getElementById('totalUserCount').textContent = `Total: ${users.length} Active Accounts`;
+
+        const tbody = document.getElementById('userTableBody');
+        tbody.innerHTML = users.map(u => {
+            const userOrders = orders.filter(o => o.user_id === u.id);
+            return `
+                <tr>
+                    <td><strong>#USR-${u.id}</strong></td>
+                    <td style="color:#fff; font-weight:600;">${u.username}</td>
+                    <td style="color:var(--text-secondary);">${u.email}</td>
+                    <td style="color:var(--text-secondary);">${u.created_at || 'Verified'}</td>
+                    <td><span style="color:#10b981; font-weight:bold; background:rgba(16,185,129,0.1); padding:4px 10px; border-radius:4px;">${userOrders.length} Orders</span></td>
+                </tr>
+            `;
+        }).join('');
+    });
+</script>
+</body>
+</html>

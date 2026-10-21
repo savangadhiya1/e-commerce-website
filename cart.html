@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart | Volt Audio</title>
+    <title>Volt | Shopping Cart Matrix</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #f4f5f7; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        .top-offer-bar { background-color: #eff4f8; color: #1a1a1a; text-align: center; padding: 8px 0; font-size: 13px; font-weight: 600; border-bottom: 1px solid #e3e9ed; }
-        .site-header { background-color: #ffffff; position: sticky; top: 0; z-index: 99999; border-bottom: 1px solid #e3e9ed; padding: 0 5%; }
-        .navbar-container { display: flex; align-items: center; justify-content: space-between; height: 80px; }
-        .logo { font-size: 32px; font-weight: 900; color: #000; text-decoration: none; letter-spacing: -1px; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a { color: #1a1a1a; text-decoration: none; font-size: 14px; font-weight: 600; }
-        
-        .cart-layout { display: flex; flex-wrap: wrap; gap: 30px; margin: 40px auto; max-width: 1100px; padding: 0 20px; }
-        .cart-items-panel { flex: 2; min-width: 320px; background: #ffffff; border-radius: 12px; border: 1px solid #e3e9ed; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
-        .cart-summary-panel { flex: 1; min-width: 280px; background: #ffffff; border-radius: 12px; border: 1px solid #e3e9ed; padding: 30px; height: fit-content; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
-        .cart-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid #eee; gap: 15px; }
-        .cart-row:last-child { border-bottom: none; }
-        .cart-img { width: 75px; height: 75px; object-fit: contain; border-radius: 8px; background: #f8f9fa; padding: 6px; }
-        .qty-control { display: flex; align-items: center; border: 1px solid #ddd; border-radius: 4px; overflow: hidden; }
-        .qty-btn { background: #f0f0f0; border: none; padding: 6px 12px; cursor: pointer; font-weight: bold; }
-        .qty-val { padding: 6px 14px; font-size: 14px; font-weight: bold; background: #fff; }
-        .del-btn { background: none; border: none; color: #ff4747; cursor: pointer; font-size: 20px; }
-        .summary-row { display: flex; justify-content: space-between; margin-bottom: 14px; color: #666; font-size: 15px; }
-        .summary-total { font-size: 20px; font-weight: bold; color: #000; border-top: 1px solid #eee; padding-top: 15px; margin-top: 15px; }
-        .checkout-btn { width: 100%; background: #ff4747; color: #fff; border: none; padding: 15px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.2s; }
+        .cart-container { max-width: 1100px; margin: 40px auto 20px auto; padding: 20px; font-family: sans-serif; color: #fff; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        @media (max-width: 768px) { .cart-container { grid-template-columns: 1fr; } }
+        .cart-items-box { background: #121212; padding: 25px; border-radius: 8px; border: 1px solid #222; }
+        .cart-item { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #222; padding: 16px 0; }
+        .cart-item img { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; background: #1c1c1c; }
+        .item-info { flex: 2; margin-left: 20px; }
+        .item-info h4 { margin: 0 0 5px 0; color: #fff; font-size: 16px; }
+        .item-info p { margin: 0; color: #ff4747; font-weight: bold; font-size: 15px; }
+        .qty-form { display: flex; align-items: center; gap: 6px; }
+        .qty-btn { width: 28px; height: 28px; background: #262733; color: #fff; border: 1px solid #444; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 15px; }
+        .qty-input { width: 44px; padding: 5px; background: #222; border: 1px solid #333; color: #fff; text-align: center; border-radius: 4px; }
+        .remove-btn { color: #ff4747; text-decoration: none; margin-left: 15px; font-size: 14px; cursor: pointer; background: none; border: none; }
+        .remove-btn:hover { text-decoration: underline; }
+        .summary-box { background: #1c1c1c; padding: 25px; border-radius: 8px; border: 1px solid #333; height: fit-content; }
+        .summary-box h3 { border-bottom: 1px solid #333; padding-bottom: 12px; color: #ff4747; margin-top: 0; }
+        .summary-row { display: flex; justify-content: space-between; margin: 15px 0; color: #bbb; font-size: 15px; }
+        .total-row { display: flex; justify-content: space-between; margin: 20px 0 10px 0; font-size: 19px; font-weight: bold; color: #fff; border-top: 1px dashed #444; padding-top: 15px; }
+        .coupon-box { display: flex; gap: 8px; margin: 20px 0 10px 0; }
+        .coupon-box input { flex: 1; padding: 10px; background: #121212; border: 1px solid #333; color: white; border-radius: 4px; font-size: 14px; text-transform: uppercase; }
+        .coupon-box button { padding: 10px 16px; background: #333; color: white; border: none; cursor: pointer; border-radius: 4px; font-weight: bold; }
+        .coupon-box button:hover { background: #444; }
+        .checkout-btn { width: 100%; padding: 14px; background: #ff4747; color: white; border: none; border-radius: 4px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.2s; margin-top: 15px; }
         .checkout-btn:hover { background: #e03e3e; }
-        
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 10000; }
-        .modal-box { background: #fff; border-radius: 12px; padding: 30px; width: 90%; max-width: 480px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .alert-info { background: #222; color: #ff4747; border: 1px solid #333; padding: 10px; border-radius: 4px; margin-bottom: 15px; font-size: 14px; }
+        .empty-cart-state { text-align: center; padding: 50px 20px; color: #888; }
+        .order-history-card { background: #121212; border: 1px solid #222; border-radius: 8px; padding: 16px; margin-bottom: 15px; }
     </style>
 </head>
 <body>
@@ -45,193 +45,289 @@
         <a href="index.html" class="logo">volt</a>
         <nav class="nav-links">
             <a href="index.html">🏠 Home</a>
-            <a href="index.html">⚡ All Gear</a>
+            <div class="dropdown">
+                <span class="drop-btn">Categories ▾</span>
+                <div class="dropdown-content">
+                    <a href="index.html?category=1">Smartwatches</a>
+                    <a href="index.html?category=2">Headphones</a>
+                    <a href="index.html?category=3">Neckbands</a>
+                    <a href="index.html?category=4">Earbuds</a>
+                    <a href="index.html?category=5">Speakers</a>
+                </div>
+            </div>
             <a href="gifting_store.html">🎁 Gifting Store</a>
+            <div class="dropdown">
+                <span class="drop-btn">More ▾</span>
+                <div class="dropdown-content">
+                    <a href="#about-us">ℹ️ About Us</a>
+                    <a href="#contact-us">📞 Contact Us</a>
+                    <a href="#location">📍 Location</a>
+                    <a href="admin_login.html">⚡ Admin Portal</a>
+                </div>
+            </div>
         </nav>
-        <div style="font-weight: 600;">
-            <a href="index.html" style="color: #ff4747; text-decoration: none;">← Continue Shopping</a>
+
+        <div class="search-box">
+            <form class="volt-search-form">
+                <input type="text" name="search" placeholder='Search "Speakers", "Headphones"...'>
+            </form>
+        </div>
+
+        <div class="action-items">
+            <div class="dropdown profile-dropdown">
+                <span class="drop-btn">👤 Profile</span>
+                <div class="dropdown-content right-align">
+                    <div id="user-status-slot">
+                        <a href="login.html" class="btn" style="margin-right: 10px; background: #ff4747; color: #fff;">👤 User Login</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-user-actions">
+                <a href="cart.html" class="cart-anchor-box" title="View Storage Matrix Cart">
+                    <img class="cart-icon-img" src="assets/images/cart-icon.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1170/1170678.png'" alt="Cart Grid View">
+                    <span class="cart-count-badge" style="display: none;">0</span>
+                </a>
+            </div>
         </div>
     </div>
 </header>
 
-<main class="cart-layout">
-    <div class="cart-items-panel">
-        <h2 style="margin-bottom: 25px; color: #1a1a1a;">Shopping Bag</h2>
-        <div id="cartListContainer"></div>
+<div class="cart-container">
+    <!-- Left Column: Cart Items -->
+    <div class="cart-items-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px;">
+            <h2 style="margin: 0; color: #fff;">Shopping Matrix Cart</h2>
+            <a href="index.html" style="color:#ff4747; text-decoration:none; font-size: 14px;">← Continue Shopping</a>
+        </div>
+
+        <div id="couponAlert" class="alert-info" style="display: none;"></div>
+
+        <div id="cartItemsList">
+            <!-- Rendered dynamically -->
+        </div>
     </div>
 
-    <div class="cart-summary-panel">
-        <h3 style="margin-bottom: 20px; color: #1a1a1a;">Price Details</h3>
+    <!-- Right Column: Order Summary -->
+    <div class="summary-box">
+        <h3>Order Summary</h3>
         <div class="summary-row">
             <span>Subtotal</span>
-            <span id="subtotalVal">₹0</span>
+            <span id="summarySubtotal">₹0</span>
+        </div>
+        <div class="summary-row" id="discountRow" style="display: none; color: #10b981;">
+            <span>Discount (<span id="discountPercent">0</span>%)</span>
+            <span id="summaryDiscount">-₹0</span>
         </div>
         <div class="summary-row">
             <span>Shipping</span>
-            <span style="color: #00b894; font-weight: bold;">FREE</span>
+            <span style="color:#4CAF50; font-weight:bold;">FREE</span>
         </div>
-        <div class="summary-row" id="discountRow" style="display: none; color: #00b894; font-weight: bold;">
-            <span>Coupon Discount</span>
-            <span id="discountVal">-₹0</span>
+        
+        <div class="coupon-box">
+            <input type="text" id="couponInput" placeholder="Promo code (e.g. VOLT20)">
+            <button type="button" id="applyCouponBtn">Apply</button>
         </div>
-        <div class="summary-row summary-total">
+        <small style="color:#888; display:block; margin-bottom: 10px;">Try: <strong>VOLT20</strong> (20% off) or <strong>VOLT50</strong> (50% off)</small>
+
+        <div class="total-row">
             <span>Total Amount</span>
-            <span id="totalVal">₹0</span>
+            <span id="summaryTotal" style="color:#ff4747;">₹0</span>
         </div>
 
-        <div style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed #ddd;">
-            <p style="font-size: 13px; color: #777; margin-bottom: 8px;">Promo Code: (Use <b>FREEVOLT</b>)</p>
-            <div style="display: flex; gap: 8px;">
-                <input type="text" id="couponInput" placeholder="ENTER CODE" style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; text-transform: uppercase;">
-                <button onclick="applyCouponCode()" style="background: #1a1a1a; color: #fff; border: none; padding: 0 15px; border-radius: 4px; cursor: pointer; font-weight: bold;">Apply</button>
-            </div>
-            <div id="couponMsg" style="font-size: 13px; margin-top: 8px;"></div>
-        </div>
-
-        <button onclick="openCheckoutModal()" class="checkout-btn">⚡ Place Order</button>
-    </div>
-</main>
-
-<div class="modal-overlay" id="checkoutModal">
-    <div class="modal-box">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h3 style="margin: 0;">Delivery Details</h3>
-            <span onclick="closeCheckoutModal()" style="cursor: pointer; font-size: 20px;">✕</span>
-        </div>
-        <form onsubmit="handlePlaceOrder(event)" style="display: flex; flex-direction: column; gap: 14px;">
-            <input type="text" placeholder="Full Name" required style="padding: 12px; border: 1px solid #ccc; border-radius: 6px;">
-            <input type="tel" placeholder="Mobile Number" required style="padding: 12px; border: 1px solid #ccc; border-radius: 6px;">
-            <textarea placeholder="Delivery Address" required rows="3" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px;"></textarea>
-            <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; font-size: 14px;">
-                Payment: <b>Cash on Delivery (Verified)</b>
-            </div>
-            <button type="submit" class="checkout-btn" style="margin-top: 5px;">Confirm Order</button>
-        </form>
+        <button type="button" class="checkout-btn" id="checkoutBtn">⚡ SECURE CHECKOUT</button>
     </div>
 </div>
 
+<!-- Purchase History Matrix Section -->
+<div style="max-width: 1100px; margin: 40px auto; padding: 20px; font-family: sans-serif; color: #fff;">
+    <h3 style="border-bottom: 1px solid #333; padding-bottom: 10px; color: #fff;">📦 Purchase History Matrix</h3>
+    <div id="orderHistoryList" style="margin-top: 15px;">
+        <!-- Rendered dynamically -->
+    </div>
+</div>
+
+<section class="volt-info-section">
+    <div class="volt-info-container">
+        <div class="info-box" id="about-us">
+            <h3>⚡ ABOUT VOLT</h3>
+            <p>Volt is a next-generation audio and smart gadgets brand. We deliver premium quality headphones, wireless earbuds, smartwatches, and speakers built with futuristic design elements and exceptional sound engineering.</p>
+        </div>
+        <div class="info-box" id="contact-us">
+            <h3>📞 CONTACT HUB</h3>
+            <p>Reach out to our support matrix for any inquiries or assistance:</p>
+            <ul>
+                <li><strong>📧 Email:</strong> support@voltgear.com</li>
+                <li><strong>📞 Hotline:</strong> +91 98765 43210</li>
+            </ul>
+        </div>
+        <div class="info-box" id="location">
+            <h3>📍 LIVE MATRIX LOCATION</h3>
+            <p>Our primary R&D and distribution hub in Gujarat, India.</p>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer-bottom">
+    <div class="container">
+        <p>&copy; 2026 VOLT Gear India. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="assets/js/db.js"></script>
+<script src="assets/js/common.js"></script>
+
 <script>
-    let discountPct = 0;
+    document.addEventListener('DOMContentLoaded', function () {
+        renderCart();
+        renderOrderHistory();
 
-    function getCart() {
-        try { return JSON.parse(localStorage.getItem('volt_cart')) || []; } catch(e) { return []; }
-    }
+        // Check if user came from gifting store with coupon parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const autoCoupon = urlParams.get('coupon');
+        if (autoCoupon) {
+            document.getElementById('couponInput').value = autoCoupon;
+            applyCouponAction(autoCoupon);
+        }
 
-    function saveCart(cart) {
-        localStorage.setItem('volt_cart', JSON.stringify(cart));
+        // Apply coupon button
+        document.getElementById('applyCouponBtn').addEventListener('click', function () {
+            const code = document.getElementById('couponInput').value.trim();
+            applyCouponAction(code);
+        });
+
+        // Checkout button
+        document.getElementById('checkoutBtn').addEventListener('click', function () {
+            const cartDetails = window.VoltDB.getCartDetails();
+            if (cartDetails.items.length === 0) {
+                alert("Your cart is empty! Add products first.");
+                return;
+            }
+
+            const res = window.VoltDB.checkout();
+            if (res.success) {
+                alert(`🎉 ORDER PLACED SUCCESSFULLY!\n\nOrder ID: #VOLT-${res.orderId}\nTotal Amount: ₹${res.total.toLocaleString()}\nEstimated Delivery: 2-3 Business Days.\n\nThank you for choosing VOLT.`);
+                renderCart();
+                renderOrderHistory();
+            } else {
+                alert(res.msg);
+            }
+        });
+    });
+
+    function applyCouponAction(code) {
+        if (!code) return;
+        const res = window.VoltDB.applyCoupon(code);
+        const alertBox = document.getElementById('couponAlert');
+        alertBox.textContent = res.msg;
+        alertBox.style.display = 'block';
         renderCart();
     }
 
     function renderCart() {
-        const cart = getCart();
-        const container = document.getElementById('cartListContainer');
+        const details = window.VoltDB.getCartDetails();
+        const itemsList = document.getElementById('cartItemsList');
+        const subtotalEl = document.getElementById('summarySubtotal');
+        const discountRow = document.getElementById('discountRow');
+        const discountPercentEl = document.getElementById('discountPercent');
+        const discountEl = document.getElementById('summaryDiscount');
+        const totalEl = document.getElementById('summaryTotal');
 
-        if (!cart || cart.length === 0) {
-            container.innerHTML = `
-                <div style="text-align: center; padding: 50px 20px; color: #888;">
-                    <div style="font-size: 48px; margin-bottom: 12px;">🛒</div>
-                    <h3>Your bag is empty</h3>
-                    <p style="margin: 10px 0 20px 0;">Add your favorite Volt audio gear to get started.</p>
-                    <a href="index.html" style="background: #1a1a1a; color: #fff; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 14px;">Shop Now</a>
+        if (details.items.length === 0) {
+            itemsList.innerHTML = `
+                <div class="empty-cart-state">
+                    <p style="font-size: 20px; margin-bottom: 15px;">🛒 Your shopping cart is empty.</p>
+                    <a href="index.html" style="display: inline-block; padding: 12px 28px; background: #ff4747; color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">Browse Hardware Gear</a>
                 </div>
             `;
-            document.getElementById('subtotalVal').textContent = '₹0';
-            document.getElementById('totalVal').textContent = '₹0';
-            document.getElementById('discountRow').style.display = 'none';
+            subtotalEl.textContent = '₹0';
+            discountRow.style.display = 'none';
+            totalEl.textContent = '₹0';
             return;
         }
 
-        let subtotal = 0;
-        container.innerHTML = cart.map(item => {
-            const lineTotal = item.price * (item.quantity || 1);
-            subtotal += lineTotal;
-            const safeImg = encodeURI(item.image);
+        itemsList.innerHTML = details.items.map(item => {
+            const imgSrc = (item.image.startsWith('http')) 
+                ? item.image 
+                : `assets/images/${item.image}`;
+            
             return `
-                <div class="cart-row">
-                    <img src="${safeImg}" class="cart-img" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500'">
-                    <div style="flex: 1;">
-                        <h4 style="margin: 0 0 5px 0;">${item.name}</h4>
-                        <div style="color: #666; font-size: 14px;">₹${item.price.toLocaleString('en-IN')}</div>
+                <div class="cart-item">
+                    <img src="${imgSrc}" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500'" alt="${item.name}">
+                    <div class="item-info">
+                        <h4>${item.name}</h4>
+                        <p>₹${Number(item.price).toLocaleString()}</p>
                     </div>
-                    <div class="qty-control">
-                        <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
-                        <span class="qty-val">${item.quantity || 1}</span>
-                        <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+                    <div class="qty-form">
+                        <button class="qty-btn" onclick="changeQty(${item.id}, ${item.quantity - 1})">-</button>
+                        <input type="number" class="qty-input" value="${item.quantity}" min="1" max="99" onchange="changeQty(${item.id}, this.value)">
+                        <button class="qty-btn" onclick="changeQty(${item.id}, ${item.quantity + 1})">+</button>
                     </div>
-                    <div style="font-weight: bold; min-width: 80px; text-align: right;">
-                        ₹${lineTotal.toLocaleString('en-IN')}
-                    </div>
-                    <button class="del-btn" onclick="removeItem(${item.id})" title="Delete">🗑</button>
+                    <button class="remove-btn" onclick="removeItem(${item.id})">✕ Remove</button>
                 </div>
             `;
         }).join('');
 
-        const discountAmt = Math.round((subtotal * discountPct) / 100);
-        const finalTotal = Math.max(0, subtotal - discountAmt);
+        subtotalEl.textContent = `₹${details.subtotal.toLocaleString()}`;
 
-        document.getElementById('subtotalVal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
-        document.getElementById('totalVal').textContent = `₹${finalTotal.toLocaleString('en-IN')}`;
-
-        if (discountAmt > 0) {
-            document.getElementById('discountRow').style.display = 'flex';
-            document.getElementById('discountVal').textContent = `-₹${discountAmt.toLocaleString('en-IN')}`;
+        if (details.discountPct > 0) {
+            discountRow.style.display = 'flex';
+            discountPercentEl.textContent = details.discountPct;
+            discountEl.textContent = `-₹${details.discountAmount.toLocaleString()}`;
         } else {
-            document.getElementById('discountRow').style.display = 'none';
+            discountRow.style.display = 'none';
         }
+
+        totalEl.textContent = `₹${details.total.toLocaleString()}`;
     }
 
-    function updateQty(id, delta) {
-        let cart = getCart();
-        const item = cart.find(i => i.id === id);
-        if (item) {
-            item.quantity += delta;
-            if (item.quantity <= 0) cart = cart.filter(i => i.id !== id);
-            saveCart(cart);
-        }
-    }
-
-    function removeItem(id) {
-        let cart = getCart().filter(i => i.id !== id);
-        saveCart(cart);
-    }
-
-    function applyCouponCode() {
-        const val = document.getElementById('couponInput').value.trim().toUpperCase();
-        const msg = document.getElementById('couponMsg');
-        if (val === 'FREEVOLT') {
-            discountPct = 20;
-            msg.style.color = '#00b894';
-            msg.textContent = '🎉 Coupon FREEVOLT applied! 20% Discount added.';
-            renderCart();
-        } else {
-            msg.style.color = '#ff4747';
-            msg.textContent = 'Invalid code. Try FREEVOLT';
-        }
-    }
-
-    function openCheckoutModal() {
-        if (getCart().length === 0) return alert("Your bag is empty!");
-        document.getElementById('checkoutModal').style.display = 'flex';
-    }
-
-    function closeCheckoutModal() {
-        document.getElementById('checkoutModal').style.display = 'none';
-    }
-
-    function handlePlaceOrder(e) {
-        e.preventDefault();
-        closeCheckoutModal();
-        saveCart([]);
-        alert("🎉 Order Confirmed!\n\nOrder ID: VOLT-" + Math.floor(100000 + Math.random() * 900000) + "\nThank you for checking out this showcase project!");
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        if (new URLSearchParams(window.location.search).get('coupon') === 'FREEVOLT') {
-            document.getElementById('couponInput').value = 'FREEVOLT';
-            applyCouponCode();
-        }
+    function changeQty(productId, qty) {
+        window.VoltDB.updateCartQty(productId, parseInt(qty));
         renderCart();
-    });
+    }
+
+    function removeItem(productId) {
+        window.VoltDB.removeFromCart(productId);
+        renderCart();
+    }
+
+    function renderOrderHistory() {
+        const historyList = document.getElementById('orderHistoryList');
+        const orders = window.VoltDB.getOrderHistory();
+
+        if (orders.length === 0) {
+            historyList.innerHTML = `<p style="color: #bbb; font-size: 14px;">No past orders recorded yet.</p>`;
+            return;
+        }
+
+        historyList.innerHTML = orders.map(o => {
+            const itemsHtml = (o.items || []).map(it => {
+                const img = it.image ? (it.image.startsWith('http') ? it.image : `assets/images/${it.image}`) : 'assets/images/volt-headphone-futuristic.png';
+                return `
+                    <div style="display:flex; align-items:center; gap: 15px; margin-top: 10px;">
+                        <img src="${img}" style="width: 45px; height: 45px; object-fit: cover; border-radius: 4px;">
+                        <span style="color:#fff; font-size: 14px;">${it.name || 'Volt Audio Gear'} (Qty: ${it.quantity || 1})</span>
+                        <span style="margin-left: auto; color:#ff4747; font-weight: bold; font-size: 14px;">₹${Number(it.price || 0).toLocaleString()}</span>
+                    </div>
+                `;
+            }).join('');
+
+            return `
+                <div class="order-history-card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid #222; padding-bottom: 8px;">
+                        <div>
+                            <strong style="color: #ff4747;">Order #VOLT-${o.id}</strong>
+                            <span style="color: #777; font-size: 13px; margin-left: 12px;">📅 ${o.order_date || 'Recent'}</span>
+                        </div>
+                        <div style="color: #10b981; font-weight: bold;">
+                            Total: ₹${Number(o.total_amount).toLocaleString()}
+                        </div>
+                    </div>
+                    ${itemsHtml}
+                </div>
+            `;
+        }).join('');
+    }
 </script>
 </body>
 </html>

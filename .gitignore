@@ -1,0 +1,4 @@
+# Ignore local backup folder when deploying to GitHub Pages / Portfolio
+_php_backend_backup/
+.vscode/
+.idea/

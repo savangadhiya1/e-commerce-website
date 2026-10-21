@@ -3,40 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details | Volt Audio</title>
+    <title>Volt | Product Details</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #f4f5f7; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        .top-offer-bar { background-color: #eff4f8; color: #1a1a1a; text-align: center; padding: 8px 0; font-size: 13px; font-weight: 600; border-bottom: 1px solid #e3e9ed; }
-        .site-header { background-color: #ffffff; position: sticky; top: 0; z-index: 99999; border-bottom: 1px solid #e3e9ed; padding: 0 5%; }
-        .navbar-container { display: flex; align-items: center; justify-content: space-between; height: 80px; }
-        .logo { font-size: 32px; font-weight: 900; color: #000; text-decoration: none; letter-spacing: -1px; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a { color: #1a1a1a; text-decoration: none; font-size: 14px; font-weight: 600; }
-        .nav-links a:hover { color: #ff0000; }
-        .cart-anchor-box { position: relative; font-size: 20px; text-decoration: none; }
-        .cart-count-badge { position: absolute; top: -8px; right: -10px; background: #ff4747; color: #fff; font-size: 11px; font-weight: bold; border-radius: 50%; padding: 2px 6px; }
-        
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-        .detail-box { display: flex; flex-wrap: wrap; gap: 40px; background: #ffffff; padding: 35px; border-radius: 12px; border: 1px solid #e3e9ed; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
-        .detail-img-wrap { flex: 1; min-width: 280px; display: flex; align-items: center; justify-content: center; background: #f8f9fa; border-radius: 10px; padding: 25px; }
-        .detail-img-wrap img { max-width: 100%; max-height: 380px; object-fit: contain; }
-        .detail-info { flex: 1.2; min-width: 300px; display: flex; flex-direction: column; }
-        .detail-info h1 { font-size: 28px; color: #1a1a1a; margin-bottom: 12px; }
-        .badges-row { display: flex; gap: 10px; align-items: center; margin-bottom: 15px; font-size: 13px; font-weight: 600; }
-        .detail-desc { font-size: 15px; line-height: 1.6; color: #555; margin-bottom: 25px; }
-        .price-box { display: flex; align-items: center; gap: 12px; margin-bottom: 25px; font-size: 26px; font-weight: bold; }
-        .qty-row { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
-        .qty-picker { display: inline-flex; align-items: center; border: 1px solid #ddd; border-radius: 6px; overflow: hidden; }
-        .qty-picker button { background: #f0f0f0; border: none; padding: 10px 18px; font-size: 16px; font-weight: bold; cursor: pointer; }
-        .qty-picker span { padding: 10px 20px; font-weight: bold; background: #fff; }
-        .add-cart-btn { flex: 1; background: #ff4747; color: #fff; border: none; padding: 14px 25px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .add-cart-btn:hover { background: #e03e3e; }
-        
-        /* Review section */
-        .reviews-section { margin-top: 30px; background: #fff; border: 1px solid #e3e9ed; border-radius: 12px; padding: 30px; }
-        .rev-card { background: #f8f9fa; border-radius: 8px; padding: 15px 20px; margin-bottom: 12px; border-left: 4px solid #00b894; }
+        .product-detail-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: #1c1c1c;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+        .detail-img-col {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        .detail-img-col img {
+            max-width: 100%;
+            max-height: 440px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            background: #121212;
+        }
+        .detail-info-col {
+            flex: 1.2;
+            min-width: 300px;
+            color: #fff;
+        }
+        .review-card {
+            background: #15161e;
+            border: 1px solid #282a36;
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin-top: 12px;
+        }
     </style>
 </head>
 <body>
@@ -48,161 +51,218 @@
 <header class="site-header">
     <div class="navbar-container">
         <a href="index.html" class="logo">volt</a>
+        
         <nav class="nav-links">
             <a href="index.html">🏠 Home</a>
-            <a href="index.html">⚡ All Gear</a>
+            <div class="dropdown">
+                <span class="drop-btn">Categories ▾</span>
+                <div class="dropdown-content">
+                    <a href="index.html?category=1">Smartwatches</a>
+                    <a href="index.html?category=2">Headphones</a>
+                    <a href="index.html?category=3">Neckbands</a>
+                    <a href="index.html?category=4">Earbuds</a>
+                    <a href="index.html?category=5">Speakers</a>
+                </div>
+            </div>
             <a href="gifting_store.html">🎁 Gifting Store</a>
+            <div class="dropdown">
+                <span class="drop-btn">More ▾</span>
+                <div class="dropdown-content">
+                    <a href="#about-us">ℹ️ About Us</a>
+                    <a href="#contact-us">📞 Contact Us</a>
+                    <a href="#location">📍 Location</a>
+                    <a href="admin_login.html">⚡ Admin Portal</a>
+                </div>
+            </div>
         </nav>
+
+        <div class="search-box">
+            <form class="volt-search-form">
+                <input type="text" name="search" placeholder='Search "Speakers", "Headphones"...'>
+            </form>
+        </div>
+
         <div class="action-items">
-            <a href="cart.html" class="cart-anchor-box" title="View Cart">
-                🛒
-                <span class="cart-count-badge" id="headerCartCount">0</span>
-            </a>
+            <div class="dropdown profile-dropdown">
+                <span class="drop-btn">👤 Profile</span>
+                <div class="dropdown-content right-align">
+                    <div id="user-status-slot">
+                        <a href="login.html" class="btn" style="margin-right: 10px; background: #ff4747; color: #fff;">👤 User Login</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-user-actions">
+                <a href="cart.html" class="cart-anchor-box" title="View Storage Matrix Cart">
+                    <img class="cart-icon-img" src="assets/images/cart-icon.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1170/1170678.png'" alt="Cart Grid View">
+                    <span class="cart-count-badge" style="display: none;">0</span>
+                </a>
+            </div>
         </div>
     </div>
 </header>
 
-<main class="container">
-    <div class="detail-box">
-        <div class="detail-img-wrap">
-            <img id="detailImg" src="" alt="Product" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500'">
-        </div>
-        <div class="detail-info">
-            <h1 id="detailName">Volt Audio Gear</h1>
-            <div class="badges-row">
-                <span id="detailRating" style="background: #fff8e1; color: #b78103; padding: 4px 8px; border-radius: 4px;">⭐ 4.8</span>
-                <span id="detailSold" style="background: #e6f9f4; color: #00b894; padding: 4px 8px; border-radius: 4px;">🛒 Verified Product</span>
-            </div>
-            <p id="detailDesc" class="detail-desc"></p>
-            <div class="price-box">
-                <span id="detailPrice" style="color: #000;">₹0</span>
-                <span id="detailOldPrice" style="color: #999; text-decoration: line-through; font-size: 18px;">₹0</span>
-                <span id="detailDiscount" style="font-size: 14px; background: #e6f9f4; color: #00b894; padding: 4px 8px; border-radius: 4px;">50% off</span>
-            </div>
-            <div class="qty-row">
-                <div class="qty-picker">
-                    <button onclick="changeQty(-1)">-</button>
-                    <span id="qtyVal">1</span>
-                    <button onclick="changeQty(1)">+</button>
-                </div>
-                <button onclick="handleAddToCart()" class="add-cart-btn">⚡ Add To Cart</button>
-            </div>
-            <div style="font-size: 13px; color: #666; line-height: 1.8; border-top: 1px solid #eee; padding-top: 15px;">
-                ✔ 1 Year Brand Warranty & Easy Replacements<br>
-                ✔ Free 48-Hour Pan-India Dispatch<br>
-                ✔ Cash on Delivery Available
-            </div>
-        </div>
-    </div>
-
-    <!-- Verified Customer Reviews Section -->
-    <div class="reviews-section">
-        <h2 style="font-size: 20px; margin-bottom: 20px; color: #1a1a1a;">Verified Buyer Reviews</h2>
-        <div id="reviewsList">
-            <div class="rev-card">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-                    <strong>Aarav Varma</strong>
-                    <span style="color: #ff9900;">⭐⭐⭐⭐⭐</span>
-                </div>
-                <p style="color: #555; font-size: 14px; margin: 0;">Superb bass and crystal clear treble. Very satisfied with battery endurance!</p>
-            </div>
-            <div class="rev-card">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-                    <strong>Kavita Joshi</strong>
-                    <span style="color: #ff9900;">⭐⭐⭐⭐⭐</span>
-                </div>
-                <p style="color: #555; font-size: 14px; margin: 0;">Comfortable cushions and great noise isolation. Looks totally futuristic.</p>
-            </div>
-        </div>
-
-        <form onsubmit="postReview(event)" style="margin-top: 25px; border-top: 1px dashed #ddd; padding-top: 20px; max-width: 500px;">
-            <h3 style="font-size: 16px; margin-bottom: 12px;">Share Your Review</h3>
-            <input type="text" id="revName" placeholder="Your Name" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px;">
-            <textarea id="revText" placeholder="How is the sound performance?" required rows="3" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
-            <button type="submit" style="background: #1a1a1a; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">Submit Review</button>
-        </form>
-    </div>
+<main class="container" style="padding: 40px 20px;" id="productDetailMain">
+    <div style="text-align: center; color: white; padding: 60px;">Loading product details...</div>
 </main>
 
+<section class="volt-info-section">
+    <div class="volt-info-container">
+        <div class="info-box" id="about-us">
+            <h3>⚡ ABOUT VOLT</h3>
+            <p>Volt is a next-generation audio and smart gadgets brand. We deliver premium quality headphones, wireless earbuds, smartwatches, and speakers built with futuristic design elements and exceptional sound engineering.</p>
+            <p>Our mission is to provide high-end technology accessible to everyone.</p>
+        </div>
+        <div class="info-box" id="contact-us">
+            <h3>📞 CONTACT HUB</h3>
+            <p>Reach out to our support matrix for any inquiries or assistance:</p>
+            <ul>
+                <li><strong>📧 Email:</strong> support@voltgear.com</li>
+                <li><strong>📞 Hotline:</strong> +91 98765 43210</li>
+                <li><strong>⏰ Hours:</strong> Mon - Sat: 10:00 AM - 7:00 PM</li>
+            </ul>
+        </div>
+        <div class="info-box" id="location">
+            <h3>📍 LIVE MATRIX LOCATION</h3>
+            <p>Our primary R&D and distribution hub:</p>
+            <div class="map-responsive">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59049.77126131375!2d70.74836643261763!3d22.292723652156824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959c98ac91ccfb5%3A0xc34cf05c2a125348!2sRajkot%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer-bottom">
+    <div class="container">
+        <p>&copy; 2026 VOLT Gear India. All rights reserved. Matrix ID: VLT-IN-HYBRID-734.</p>
+    </div>
+</footer>
+
+<script src="assets/js/db.js"></script>
+<script src="assets/js/common.js"></script>
+
 <script>
-    const VOLT_PRODUCTS = [
-        { id: 1, name: "Volt Rockerz Futuristic Edition", description: "Next-gen over-ear headphones featuring carbon fiber composite drivers, adaptive ANC, and up to 40 hours of playback.", price: 2499, original_price: 4999, discount: "50% off", image: "assets/images/volt-headphone-futuristic.png", rating: 4.8, total_sold: 142 },
-        { id: 2, name: "Volt Sonic Boom 5", description: "Flagship premium speaker featuring an illuminated AMOLED micro-casing display and thunderous 360-degree soundstage.", price: 3299, original_price: 7999, discount: "58% off", image: "assets/images/Volt Sonic Boom 5.png", rating: 4.9, total_sold: 98 },
-        { id: 3, name: "The VOLT BassBuds", description: "Highly ergonomic wireless neckband utilizing dynamic graphene audio soundstages and flexible lightweight structural bands.", price: 1799, original_price: 3999, discount: "55% off", image: "assets/images/The VOLT BassBuds.png", rating: 4.7, total_sold: 215 },
-        { id: 4, name: "smart watche x1", description: "The ultimate rugged fitness tracker featuring real-time heart rate sensor, sapphire glass and multi-day battery endurance.", price: 2222, original_price: 4444, discount: "50% off", image: "assets/images/The VOLT FitWatch X1.png", rating: 4.5, total_sold: 84 },
-        { id: 5, name: "Volt Pods E1", description: "Best-selling true wireless earbuds engineered with low latency gaming mode, punchy bass, and quick charge case.", price: 1199, original_price: 2299, discount: "50% off", image: "assets/images/Volt Pods E1.png", rating: 4.6, total_sold: 340 },
-        { id: 6, name: "Volt Sonic Over-Ear Headphones", description: "Active Noise Cancellation (ANC), 40-hour battery life, Deep Bass Drivers, Lightweight Comfort Design, Bluetooth 5.2.", price: 5999, original_price: 7999, discount: "25% off", image: "assets/images/Volt Sonic (V-HP01).png", rating: 4.9, total_sold: 67 },
-        { id: 7, name: "Volt Pulse Smartwatch", description: "1.4\" HD Retina Display, Heart Rate & SpO2 Monitor, 5ATM Water Resistance, Built-in GPS, Multi-Sport Tracking.", price: 2499, original_price: 4999, discount: "50% off", image: "assets/images/Volt Pulse (V-SW05).png", rating: 4.8, total_sold: 189 },
-        { id: 8, name: "Volt Flex Neckband Earphones", description: "Flex-Form Cable, Magnetic Earbuds, 25-hour Playtime, Environmental Noise Cancellation (ENC), Quick Charge.", price: 2499, original_price: 4999, discount: "50% off", image: "assets/images/Volt Flex (V-NB20).png", rating: 4.6, total_sold: 112 },
-        { id: 9, name: "Volt Blast Portable Speaker", description: "360-Degree Sound, IPX7 Waterproof, 20-hour Playtime, Wireless Stereo Pairing (TWS), Integrated Lanyard.", price: 2899, original_price: 5599, discount: "50% off", image: "assets/images/Volt Blast (V-PK30).png", rating: 4.7, total_sold: 76 },
-        { id: 10, name: "Volt Budz Wireless Earbuds", description: "True Wireless via Bluetooth 5.3, In-Ear Detection, Touch Controls, Transparency Mode, 28-hour battery.", price: 1199, original_price: 2299, discount: "50% off", image: "assets/images/Volt Budz (V-TW40).png", rating: 4.5, total_sold: 154 },
-        { id: 11, name: "VOLT 'QUANTUM'", description: "A premium smartwatch featuring a durable casing, titanium accents and a customizable analog-digital face.", price: 1599, original_price: 2499, discount: "50% off", image: "assets/images/VOLT 'QUANTUM'.png", rating: 4.8, total_sold: 63 },
-        { id: 12, name: "VOLT 'ARC' Over-Ear", description: "Brushed gunmetal grey headphones with cognac-brown leather memory foam cushions. Acoustic soundstage tuned by audiophiles.", price: 1799, original_price: 2199, discount: "60% off", image: "assets/images/VOLT 'ARC' Over-Ear.png", rating: 4.9, total_sold: 120 },
-        { id: 13, name: "VOLT 'FLUX' Neckband", description: "Matte-black silicone neckband with electric blue inner lining, CNC-machined alloy ends, and 30-hour battery life.", price: 899, original_price: 1299, discount: "50% off", image: "assets/images/VOLT 'FLUX' Neckband.png", rating: 4.4, total_sold: 230 },
-        { id: 14, name: "VOLT 'PRISMA' Portable Speaker", description: "Multi-faceted geometrical enclosure wrapped in acoustic mesh with bronze-gold metallic highlights and crisp 30W drivers.", price: 1699, original_price: 2499, discount: "50% off", image: "assets/images/VOLT 'PRISMA' Portable Speaker.png", rating: 4.8, total_sold: 92 },
-        { id: 15, name: "VOLT 'ZENITH' TWS Earbuds", description: "Faceted geometric shells with active ambient noise reduction, smart touch surfaces, and ultra-compact carry case.", price: 499, original_price: 1199, discount: "50% off", image: "assets/images/VOLT 'ZENITH' TWS Earbuds.png", rating: 4.7, total_sold: 410 }
-    ];
+    document.addEventListener('DOMContentLoaded', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = parseInt(urlParams.get('id')) || 1;
+        const product = window.VoltDB.getProductById(productId);
+        const main = document.getElementById('productDetailMain');
 
-    let currentQty = 1;
-    let currProd = null;
+        if (!product) {
+            main.innerHTML = `
+                <div style="text-align: center; color: white; padding: 60px;">
+                    <h2>Product not found!</h2>
+                    <a href="index.html" class="btn btn-add-cart" style="display:inline-block; margin-top: 20px; width: auto; padding: 10px 25px;">Back to Store</a>
+                </div>
+            `;
+            return;
+        }
 
-    function changeQty(d) {
-        currentQty = Math.max(1, currentQty + d);
-        document.getElementById('qtyVal').textContent = currentQty;
-    }
+        const imgSrc = (product.image.startsWith('http')) 
+            ? product.image 
+            : `assets/images/${product.image}`;
+        
+        const price = Number(product.price).toLocaleString();
+        const originalPrice = Number(product.original_price).toLocaleString();
+        const user = window.VoltDB.getCurrentUser();
+        const reviews = window.VoltDB.getReviews(productId);
 
-    function updateCartBadge() {
-        try {
-            const cart = JSON.parse(localStorage.getItem('volt_cart')) || [];
-            const count = cart.reduce((s, i) => s + (i.quantity || 1), 0);
-            const el = document.getElementById('headerCartCount');
-            if (el) el.textContent = count;
-        } catch(e) {}
-    }
+        let reviewsHtml = reviews.length > 0 
+            ? reviews.map(r => `
+                <div class="review-card">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <strong style="color: #ff4747;">${r.user_name || 'Verified User'}</strong>
+                        <span style="color: gold;">${'⭐'.repeat(r.rating || 5)}</span>
+                    </div>
+                    <p style="color: #ccc; margin: 4px 0; font-size: 14px;">${r.review_text || 'Excellent sound performance and build quality.'}</p>
+                    <small style="color: #666; font-size: 11px;">Posted on ${r.created_at || 'Recently'}</small>
+                </div>
+            `).join('')
+            : `<p style="color: #888; font-size: 14px; margin-top: 10px;">No user reviews yet. Be the first to review this product!</p>`;
 
-    function handleAddToCart() {
-        if (!currProd) return;
-        try {
-            let cart = JSON.parse(localStorage.getItem('volt_cart')) || [];
-            const idx = cart.findIndex(i => i.id === currProd.id);
-            if (idx > -1) {
-                cart[idx].quantity = (cart[idx].quantity || 1) + currentQty;
-            } else {
-                cart.push({ id: currProd.id, name: currProd.name, price: currProd.price, image: currProd.image, quantity: currentQty });
-            }
-            localStorage.setItem('volt_cart', JSON.stringify(cart));
-            updateCartBadge();
-            alert(`Added ${currentQty}x "${currProd.name}" to cart!`);
-        } catch(e) {}
-    }
+        main.innerHTML = `
+            <div class="product-detail-box">
+                <div class="detail-img-col">
+                    <img src="${imgSrc}" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500'" alt="${product.name}">
+                </div>
+                
+                <div class="detail-info-col">
+                    <h1 style="color: #ff4747; margin-top: 0; font-size: 28px;">${product.name}</h1>
+                    
+                    <div style="margin-bottom: 15px; background: #222; display: inline-block; padding: 8px 15px; border-radius: 20px; font-size: 14px; border: 1px solid #444;">
+                        <span style="color: gold;">⭐ ${product.avg_rating} (${product.review_count} Reviews)</span> | 
+                        <span style="color: #4CAF50; font-weight: bold;">🛒 ${product.total_sold}+ Sold Recent</span>
+                    </div>
 
-    function postReview(e) {
-        e.preventDefault();
-        const name = document.getElementById('revName').value.trim();
-        const text = document.getElementById('revText').value.trim();
-        const list = document.getElementById('reviewsList');
-        const card = document.createElement('div');
-        card.className = 'rev-card';
-        card.style.borderLeftColor = '#ff4747';
-        card.innerHTML = `<div style="display:flex;justify-content:space-between;margin-bottom:6px;"><strong>${name} (Just now)</strong><span style="color:#ff9900;">⭐⭐⭐⭐⭐</span></div><p style="color:#555;font-size:14px;margin:0;">${text}</p>`;
-        list.prepend(card);
-        e.target.reset();
-        alert("Thank you! Review added.");
-    }
+                    <p style="color: #bbb; font-size: 16px; line-height: 1.6;">${product.description}</p>
+                    
+                    <div style="margin: 20px 0; font-size: 24px;">
+                        <span style="color: #fff; font-weight: bold;">₹${price}</span>
+                        <span style="color: #888; text-decoration: line-through; font-size: 18px; margin-left: 10px;">₹${originalPrice}</span>
+                        <span class="discount-tag" style="margin-left: 12px; font-size: 16px;">${product.discount}</span>
+                    </div>
+                    
+                    <div style="margin-top: 25px;">
+                        <button id="addToCartBtn" style="background: #ff4747; color: white; padding: 14px 32px; font-size: 16px; border-radius: 4px; border: none; cursor: pointer; font-weight: bold; transition: 0.2s;">🛒 Add To Cart</button>
+                        <a href="cart.html" style="background: #333; color: white; padding: 14px 24px; font-size: 16px; border-radius: 4px; text-decoration: none; display: inline-block; font-weight: bold; margin-left: 10px;">View Cart</a>
+                    </div>
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const id = parseInt(new URLSearchParams(window.location.search).get('id')) || 1;
-        currProd = VOLT_PRODUCTS.find(p => p.id === id) || VOLT_PRODUCTS[0];
-        document.title = `${currProd.name} | Volt Audio`;
-        document.getElementById('detailImg').src = encodeURI(currProd.image);
-        document.getElementById('detailName').textContent = currProd.name;
-        document.getElementById('detailDesc').textContent = currProd.description;
-        document.getElementById('detailRating').textContent = `⭐ ${currProd.rating}`;
-        document.getElementById('detailSold').textContent = `🛒 ${currProd.total_sold}+ Sold`;
-        document.getElementById('detailPrice').textContent = `₹${currProd.price.toLocaleString('en-IN')}`;
-        document.getElementById('detailOldPrice').textContent = `₹${currProd.original_price.toLocaleString('en-IN')}`;
-        document.getElementById('detailDiscount').textContent = currProd.discount;
-        updateCartBadge();
+                    <hr style="border-color: #333; margin: 40px 0 20px 0;">
+                    <h3 style="color: #fff; margin-bottom: 15px;">Customer Reviews & Feedback</h3>
+                    
+                    ${user ? `
+                        <form id="reviewForm" style="background: #121212; padding: 20px; border-radius: 8px; border: 1px solid #333;">
+                            <label style="color: #bbb; display: block; margin-bottom: 6px; font-size: 14px;">Rate this product:</label>
+                            <select id="reviewRating" required style="width: 100%; padding: 10px; margin-bottom: 15px; background: #222; color: #fff; border: 1px solid #444; border-radius: 4px;">
+                                <option value="5">⭐⭐⭐⭐⭐ (5/5) - Excellent</option>
+                                <option value="4">⭐⭐⭐⭐ (4/5) - Very Good</option>
+                                <option value="3">⭐⭐⭐ (3/5) - Average</option>
+                                <option value="2">⭐⭐ (2/5) - Poor</option>
+                                <option value="1">⭐ (1/5) - Terrible</option>
+                            </select>
+
+                            <label style="color: #bbb; display: block; margin-bottom: 6px; font-size: 14px;">Your Feedback:</label>
+                            <textarea id="reviewText" rows="3" placeholder="Share your experience with sound clarity, build, and battery..." required style="width: 100%; padding: 10px; background: #222; color: #fff; border: 1px solid #444; border-radius: 4px; margin-bottom: 15px; box-sizing: border-box;"></textarea>
+
+                            <button type="submit" style="background: #333; color: white; padding: 10px 20px; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-weight: bold;">Submit Review</button>
+                        </form>
+                    ` : `
+                        <div style="background: #121212; padding: 20px; border-radius: 8px; border: 1px solid #333; text-align: center;">
+                            <p style="color: #bbb; margin-bottom: 15px;">Please log in to leave a review and rating.</p>
+                            <a href="login.html" style="background: #ff4747; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; display: inline-block;">Login to Review</a>
+                        </div>
+                    `}
+
+                    <div id="reviewsList" style="margin-top: 25px;">
+                        ${reviewsHtml}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Handle Add to Cart Click
+        document.getElementById('addToCartBtn').addEventListener('click', function () {
+            window.VoltDB.addToCart(product.id, 1);
+            this.textContent = "✓ Added to Cart!";
+            this.style.background = "#10b981";
+            setTimeout(() => {
+                this.textContent = "🛒 Add To Cart";
+                this.style.background = "#ff4747";
+            }, 1800);
+        });
+
+        // Handle Review Submission
+        const reviewForm = document.getElementById('reviewForm');
+        if (reviewForm) {
+            reviewForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const rating = document.getElementById('reviewRating').value;
+                const text = document.getElementById('reviewText').value.trim();
+                window.VoltDB.addReview(product.id, rating, text);
+                alert("Thank you! Your review has been added.");
+                window.location.reload();
+            });
+        }
     });
 </script>
 </body>

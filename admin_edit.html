@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volt | Modify Hardware Stock</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body { background: #0b0c10; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; }
+        .form-wrap { max-width: 600px; margin: 40px auto; background: #13141c; padding: 30px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: #9da3af; font-size: 14px; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 11px 14px; background: #1c1c28; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; font-size: 14px; color: #fff; box-sizing: border-box; outline: none; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: #ff4747; }
+        .btn-submit { background: #3b82f6; color: white; border: none; padding: 14px 20px; border-radius: 6px; font-weight: 700; font-size: 15px; cursor: pointer; display: block; width: 100%; transition: 0.2s; }
+        .btn-submit:hover { background: #2563eb; }
+    </style>
+</head>
+<body>
+
+<div class="form-wrap">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 15px;">
+        <h2 style="margin: 0; font-size: 20px; color: #fff;">✏️ Modify Hardware Asset</h2>
+        <a href="admin_dashboard.html" style="color: #64748b; text-decoration: none; font-size: 13px; font-weight: 600;">← Back to Dashboard</a>
+    </div>
+
+    <form id="editProdForm">
+        <div class="form-group">
+            <label>Product Title Name</label>
+            <input type="text" id="pName" required>
+        </div>
+        <div class="form-group">
+            <label>Category Selection</label>
+            <select id="pCategory" required>
+                <option value="1">Smartwatches</option>
+                <option value="2">Headphones</option>
+                <option value="3">Wireless Neckbands</option>
+                <option value="4">Wireless Earbuds</option>
+                <option value="5">Speakers</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Display Image Filename or Image URL</label>
+            <input type="text" id="pImage" required>
+        </div>
+        <div class="form-group">
+            <label>Live Selling Price (₹)</label>
+            <input type="number" step="0.01" id="pPrice" required>
+        </div>
+        <div class="form-group">
+            <label>Standard Retail Price (₹)</label>
+            <input type="number" step="0.01" id="pOriginalPrice" required>
+        </div>
+        <div class="form-group">
+            <label>Target Offer Text Label</label>
+            <input type="text" id="pDiscount">
+        </div>
+        <div class="form-group">
+            <label>Hardware Description Details</label>
+            <textarea id="pDescription" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Save Modified Specifications</button>
+    </form>
+</div>
+
+<script src="assets/js/db.js"></script>
+<script>
+    if (!window.VoltDB.isAdminLoggedIn()) {
+        window.location.href = 'admin_login.html';
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const prodId = parseInt(urlParams.get('id'));
+    const prod = window.VoltDB.getProductById(prodId);
+
+    if (!prod) {
+        alert("Product not found!");
+        window.location.href = 'admin_dashboard.html';
+    } else {
+        document.getElementById('pName').value = prod.name;
+        document.getElementById('pCategory').value = prod.category_id;
+        document.getElementById('pImage').value = prod.image;
+        document.getElementById('pPrice').value = prod.price;
+        document.getElementById('pOriginalPrice').value = prod.original_price;
+        document.getElementById('pDiscount').value = prod.discount;
+        document.getElementById('pDescription').value = prod.description;
+    }
+
+    document.getElementById('editProdForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        window.VoltDB.updateProduct(prodId, {
+            name: document.getElementById('pName').value.trim(),
+            category_id: parseInt(document.getElementById('pCategory').value),
+            image: document.getElementById('pImage').value.trim(),
+            price: parseFloat(document.getElementById('pPrice').value),
+            original_price: parseFloat(document.getElementById('pOriginalPrice').value),
+            discount: document.getElementById('pDiscount').value.trim(),
+            description: document.getElementById('pDescription').value.trim()
+        });
+
+        alert("Asset specifications updated successfully!");
+        window.location.href = 'admin_dashboard.html';
+    });
+</script>
+</body>
+</html>

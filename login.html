@@ -3,17 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account | Volt Audio</title>
+    <title>Volt | User Access & Authentication</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .auth-container { max-width: 800px; margin: 60px auto; padding: 20px; display: flex; gap: 30px; flex-wrap: wrap; }
-        .auth-card { flex: 1; min-width: 300px; background: #1c1c1c; padding: 30px; border-radius: 10px; border: 1px solid #333; }
-        .auth-card h2 { color: #ff4747; margin-top: 0; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; color: #fff; margin-bottom: 5px; font-size: 14px; }
-        .form-group input { width: 100%; padding: 12px; background: #121212; border: 1px solid #444; color: #fff; border-radius: 5px; box-sizing: border-box; }
-        .auth-submit-btn { width: 100%; background: #ff4747; color: #fff; border: none; padding: 12px; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .auth-submit-btn:hover { background: #e03e3e; }
+        .auth-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .auth-card {
+            flex: 1;
+            min-width: 300px;
+            background: #1c1c1c;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .auth-card h2 {
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .auth-input {
+            padding: 12px;
+            background: #121212;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .auth-btn {
+            padding: 12px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+        .btn-signin { background: #ff4747; }
+        .btn-signin:hover { background: #e03e3e; }
+        .btn-signup { background: #333; border: 1px solid #555; }
+        .btn-signup:hover { background: #444; }
+        .alert-box { padding: 10px 14px; border-radius: 4px; font-size: 13.5px; margin-bottom: 15px; }
+        .alert-error { background: rgba(255, 71, 71, 0.15); color: #ff4747; border: 1px solid #ff4747; }
+        .alert-success { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid #10b981; }
+        .quick-demo-hint { background: #121212; border: 1px dashed #444; padding: 12px; border-radius: 6px; font-size: 12px; color: #9da3af; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -27,87 +72,164 @@
         <a href="index.html" class="logo">volt</a>
         <nav class="nav-links">
             <a href="index.html">🏠 Home</a>
-            <a href="index.html">⚡ All Gear</a>
+            <div class="dropdown">
+                <span class="drop-btn">Categories ▾</span>
+                <div class="dropdown-content">
+                    <a href="index.html?category=1">Smartwatches</a>
+                    <a href="index.html?category=2">Headphones</a>
+                    <a href="index.html?category=3">Neckbands</a>
+                    <a href="index.html?category=4">Earbuds</a>
+                    <a href="index.html?category=5">Speakers</a>
+                </div>
+            </div>
             <a href="gifting_store.html">🎁 Gifting Store</a>
+            <div class="dropdown">
+                <span class="drop-btn">More ▾</span>
+                <div class="dropdown-content">
+                    <a href="#about-us">ℹ️ About Us</a>
+                    <a href="#contact-us">📞 Contact Us</a>
+                    <a href="#location">📍 Location</a>
+                    <a href="admin_login.html">⚡ Admin Portal</a>
+                </div>
+            </div>
         </nav>
+
+        <div class="search-box">
+            <form class="volt-search-form">
+                <input type="text" name="search" placeholder='Search "Speakers", "Headphones"...'>
+            </form>
+        </div>
+
         <div class="action-items">
-            <a href="login.html" class="action-btn" title="Profile">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-            </a>
-            <a href="cart.html" class="action-btn cart-icon" title="View Cart">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="9" cy="21" r="1"></circle>
-                    <circle cx="20" cy="21" r="1"></circle>
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-                <span class="cart-count">0</span>
-            </a>
+            <div class="dropdown profile-dropdown">
+                <span class="drop-btn">👤 Profile</span>
+                <div class="dropdown-content right-align">
+                    <div id="user-status-slot">
+                        <a href="login.html" class="btn" style="margin-right: 10px; background: #ff4747; color: #fff;">👤 User Login</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-user-actions">
+                <a href="cart.html" class="cart-anchor-box" title="View Storage Matrix Cart">
+                    <img class="cart-icon-img" src="assets/images/cart-icon.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1170/1170678.png'" alt="Cart Grid View">
+                    <span class="cart-count-badge" style="display: none;">0</span>
+                </a>
+            </div>
         </div>
     </div>
 </header>
 
 <main class="auth-container">
+    <!-- Sign In Card -->
     <div class="auth-card">
-        <h2>Customer Sign In</h2>
-        <form onsubmit="handleLogin(event)">
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" id="loginEmail" placeholder="demo@voltgear.io" value="user@voltgear.io" required>
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="loginPass" placeholder="••••••••" value="demo123" required>
-            </div>
-            <button type="submit" class="auth-submit-btn">Sign In to Volt</button>
+        <h2 style="color: #ff4747;">Sign In</h2>
+        <div id="loginAlert" style="display:none;" class="alert-box alert-error"></div>
+        
+        <form class="auth-form" id="loginForm">
+            <input type="email" id="loginEmail" class="auth-input" placeholder="Email Address (e.g. jay1@gmail.com)" required>
+            <input type="password" id="loginPassword" class="auth-input" placeholder="Password (any / 123)" required>
+            <button type="submit" class="auth-btn btn-signin">Login</button>
         </form>
+
+        <div class="quick-demo-hint">
+            <strong>💡 Demo Test Account:</strong><br>
+            Email: <code>jay1@gmail.com</code> | Password: <code>123</code>
+        </div>
     </div>
 
+    <!-- Create Account Card -->
     <div class="auth-card">
-        <h2>New Customer?</h2>
-        <form onsubmit="handleRegister(event)">
-            <div class="form-group">
-                <label>Your Name</label>
-                <input type="text" id="regName" placeholder="John Doe" required>
-            </div>
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" id="regEmail" placeholder="john@example.com" required>
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="regPass" placeholder="Create password" required>
-            </div>
-            <button type="submit" class="auth-submit-btn" style="background: #333;">Create Account</button>
+        <h2 style="color: #fff;">Create Account</h2>
+        <div id="registerAlert" style="display:none;" class="alert-box alert-success"></div>
+        
+        <form class="auth-form" id="registerForm">
+            <input type="text" id="regName" class="auth-input" placeholder="Full Name" required>
+            <input type="email" id="regEmail" class="auth-input" placeholder="Email Address" required>
+            <input type="password" id="regPassword" class="auth-input" placeholder="Create Password" required>
+            <button type="submit" class="auth-btn btn-signup">Register</button>
         </form>
+
+        <div class="quick-demo-hint">
+            <strong>⚡ Instant Client Registration:</strong><br>
+            Your account saves locally so you can submit reviews & view purchases.
+        </div>
     </div>
 </main>
 
-<script src="assets/js/products.js"></script>
-<script src="assets/js/cart.js"></script>
-<script>
-    function handleLogin(e) {
-        e.preventDefault();
-        const email = document.getElementById('loginEmail').value;
-        localStorage.setItem('volt_user', JSON.stringify({ email: email, name: email.split('@')[0] }));
-        showToast("Signed in successfully!");
-        setTimeout(() => {
-            window.location.href = "index.html";
-        }, 800);
-    }
+<section class="volt-info-section">
+    <div class="volt-info-container">
+        <div class="info-box" id="about-us">
+            <h3>⚡ ABOUT VOLT</h3>
+            <p>Volt is a next-generation audio and smart gadgets brand. We deliver premium quality headphones, wireless earbuds, smartwatches, and speakers.</p>
+        </div>
+        <div class="info-box" id="contact-us">
+            <h3>📞 CONTACT HUB</h3>
+            <p>Reach out to our support matrix for any inquiries or assistance:</p>
+            <ul>
+                <li><strong>📧 Email:</strong> support@voltgear.com</li>
+                <li><strong>📞 Hotline:</strong> +91 98765 43210</li>
+            </ul>
+        </div>
+        <div class="info-box" id="location">
+            <h3>📍 LIVE MATRIX LOCATION</h3>
+            <p>Our primary R&D and distribution hub in Rajkot, Gujarat, India.</p>
+        </div>
+    </div>
+</section>
 
-    function handleRegister(e) {
-        e.preventDefault();
-        const name = document.getElementById('regName').value;
-        const email = document.getElementById('regEmail').value;
-        localStorage.setItem('volt_user', JSON.stringify({ email: email, name: name }));
-        showToast("Account created successfully!");
-        setTimeout(() => {
-            window.location.href = "index.html";
-        }, 800);
-    }
+<footer class="site-footer-bottom">
+    <div class="container">
+        <p>&copy; 2026 VOLT Gear India. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="assets/js/db.js"></script>
+<script src="assets/js/common.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Sign In Form Handler
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const pass = document.getElementById('loginPassword').value;
+            const res = window.VoltDB.loginUser(email, pass);
+            const alertBox = document.getElementById('loginAlert');
+
+            if (res.success) {
+                alertBox.className = "alert-box alert-success";
+                alertBox.textContent = `Welcome back, ${res.user.username}! Redirecting...`;
+                alertBox.style.display = 'block';
+                setTimeout(() => window.location.href = 'index.html', 900);
+            } else {
+                alertBox.className = "alert-box alert-error";
+                alertBox.textContent = res.msg;
+                alertBox.style.display = 'block';
+            }
+        });
+
+        // Register Form Handler
+        document.getElementById('registerForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const pass = document.getElementById('regPassword').value;
+            const res = window.VoltDB.registerUser(name, email, pass);
+            const alertBox = document.getElementById('registerAlert');
+
+            if (res.success) {
+                alertBox.className = "alert-box alert-success";
+                alertBox.textContent = `Account created successfully! Welcome, ${res.user.username}. Redirecting...`;
+                alertBox.style.display = 'block';
+                setTimeout(() => window.location.href = 'index.html', 900);
+            } else {
+                alertBox.className = "alert-box alert-error";
+                alertBox.textContent = res.msg;
+                alertBox.style.display = 'block';
+            }
+        });
+    });
 </script>
 </body>
 </html>

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gifting Matrix | Volt Audio</title>
+    <title>Volt | Gifting Store Matrix</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .gift-container { max-width: 800px; margin: 80px auto; padding: 30px; text-align: center; color: #fff; }
+        .gift-container { max-width: 800px; margin: 80px auto; padding: 30px; text-align: center; font-family: sans-serif; color: #fff; }
         .gift-card { background: #121212; border: 1px solid #ff4747; border-radius: 12px; padding: 40px; box-shadow: 0 0 20px rgba(255, 71, 71, 0.2); }
         .gift-icon { font-size: 60px; margin-bottom: 20px; animation: pulse 2s infinite; }
         @keyframes pulse {
@@ -17,7 +17,7 @@
         .gift-card h1 { color: #fff; margin-bottom: 10px; font-size: 32px; letter-spacing: 1px; }
         .gift-card p { color: #bbb; font-size: 16px; margin-bottom: 30px; line-height: 1.6; }
         .coupon-reveal-box { background: #1c1c1c; border: 1px dashed #444; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
-        .coupon-code-badge { font-size: 24px; font-weight: bold; color: #ff4747; background: #0a0a0a; padding: 10px 20px; border-radius: 6px; display: inline-block; letter-spacing: 2px; border: 1px solid #333; margin-top: 10px; }
+        .coupon-code-badge { font-size: 24px; font-weight: bold; color: #ff4747; background: #0a0a0a; padding: 10px 20px; border-radius: 6px; display: inline-block; letter-spacing: 2px; border: 1px solid #333; margin-top: 10px; cursor: pointer; }
         .claim-btn { display: inline-block; padding: 14px 35px; background: #ff4747; color: #fff; font-weight: bold; font-size: 16px; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; transition: 0.3s; }
         .claim-btn:hover { background: #e03e3e; box-shadow: 0 0 15px rgba(255, 71, 71, 0.4); }
     </style>
@@ -33,24 +33,50 @@
         <a href="index.html" class="logo">volt</a>
         <nav class="nav-links">
             <a href="index.html">🏠 Home</a>
-            <a href="index.html">⚡ All Gear</a>
+            <div class="dropdown">
+                <span class="drop-btn">Categories ▾</span>
+                <div class="dropdown-content">
+                    <a href="index.html?category=1">Smartwatches</a>
+                    <a href="index.html?category=2">Headphones</a>
+                    <a href="index.html?category=3">Neckbands</a>
+                    <a href="index.html?category=4">Earbuds</a>
+                    <a href="index.html?category=5">Speakers</a>
+                </div>
+            </div>
             <a href="gifting_store.html">🎁 Gifting Store</a>
+            <div class="dropdown">
+                <span class="drop-btn">More ▾</span>
+                <div class="dropdown-content">
+                    <a href="#about-us">ℹ️ About Us</a>
+                    <a href="#contact-us">📞 Contact Us</a>
+                    <a href="#location">📍 Location</a>
+                    <a href="admin_login.html">⚡ Admin Portal</a>
+                </div>
+            </div>
         </nav>
+
+        <div class="search-box">
+            <form class="volt-search-form">
+                <input type="text" name="search" placeholder='Search "Speakers", "Headphones"...'>
+            </form>
+        </div>
+
         <div class="action-items">
-            <a href="login.html" class="action-btn" title="Profile">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-            </a>
-            <a href="cart.html" class="action-btn cart-icon" title="View Cart">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="9" cy="21" r="1"></circle>
-                    <circle cx="20" cy="21" r="1"></circle>
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-                <span class="cart-count">0</span>
-            </a>
+            <div class="dropdown profile-dropdown">
+                <span class="drop-btn">👤 Profile</span>
+                <div class="dropdown-content right-align">
+                    <div id="user-status-slot">
+                        <a href="login.html" class="btn" style="margin-right: 10px; background: #ff4747; color: #fff;">👤 User Login</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-user-actions">
+                <a href="cart.html" class="cart-anchor-box" title="View Storage Matrix Cart">
+                    <img class="cart-icon-img" src="assets/images/cart-icon.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1170/1170678.png'" alt="Cart Grid View">
+                    <span class="cart-count-badge" style="display: none;">0</span>
+                </a>
+            </div>
         </div>
     </div>
 </header>
@@ -59,18 +85,65 @@
     <div class="gift-card">
         <div class="gift-icon">🎁</div>
         <h1>VOLT GIFTING MATRIX</h1>
-        <p>Unlock premium, limited-edition audio hardware updates completely for free. We are deploying a free mystery discount directly into your checkout stream.</p>
+        <p>Unlock premium, limited-edition dynamic hardware updates completely for free. We are deploying a free mystery box coupon code directly into your checkout stream.</p>
         
         <div class="coupon-reveal-box">
             <span style="color: #bbb; font-size: 14px; text-transform: uppercase;">Your Secret Access Code:</span><br>
-            <span class="coupon-code-badge">FREEVOLT</span>
+            <span class="coupon-code-badge" id="promoCodeBadge" title="Click to copy">FREEVOLT</span>
+            <div id="copiedNotice" style="display:none; color:#10b981; font-size:12px; margin-top:6px;">✓ Copied to clipboard!</div>
         </div>
 
-        <a href="cart.html?coupon=FREEVOLT" class="claim-btn">CLAIM FREE GIFT ⚡</a>
+        <button type="button" class="claim-btn" id="claimGiftBtn">CLAIM VIP GIFT ⚡</button>
     </div>
 </div>
 
-<script src="assets/js/products.js"></script>
-<script src="assets/js/cart.js"></script>
+<section class="volt-info-section">
+    <div class="volt-info-container">
+        <div class="info-box" id="about-us">
+            <h3>⚡ ABOUT VOLT</h3>
+            <p>Volt is a next-generation audio and smart gadgets brand. We deliver premium quality headphones, wireless earbuds, smartwatches, and speakers.</p>
+        </div>
+        <div class="info-box" id="contact-us">
+            <h3>📞 CONTACT HUB</h3>
+            <p>Reach out to our support matrix for any inquiries or assistance:</p>
+            <ul>
+                <li><strong>📧 Email:</strong> support@voltgear.com</li>
+                <li><strong>📞 Hotline:</strong> +91 98765 43210</li>
+            </ul>
+        </div>
+        <div class="info-box" id="location">
+            <h3>📍 LIVE MATRIX LOCATION</h3>
+            <p>Our primary R&D and distribution hub in Gujarat, India.</p>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer-bottom">
+    <div class="container">
+        <p>&copy; 2026 VOLT Gear India. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="assets/js/db.js"></script>
+<script src="assets/js/common.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const badge = document.getElementById('promoCodeBadge');
+        const copiedNotice = document.getElementById('copiedNotice');
+
+        badge.addEventListener('click', function () {
+            navigator.clipboard.writeText('FREEVOLT').then(() => {
+                copiedNotice.style.display = 'block';
+                setTimeout(() => copiedNotice.style.display = 'none', 2000);
+            });
+        });
+
+        document.getElementById('claimGiftBtn').addEventListener('click', function () {
+            window.VoltDB.applyCoupon('FREEVOLT');
+            window.location.href = 'cart.html?coupon=FREEVOLT';
+        });
+    });
+</script>
 </body>
 </html>

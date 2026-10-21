@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volt | Admin Access Portal</title>
+    <style>
+        body { background: #0a0a0a; color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 80vh; margin: 0; padding: 20px; }
+        .login-box { width: 100%; max-width: 380px; background: #121212; padding: 35px 30px; border-radius: 12px; border: 1px solid #282a36; box-shadow: 0 10px 30px rgba(0,0,0,0.7); }
+        .login-box h2 { text-align: center; margin-top: 0; font-size: 24px; letter-spacing: 1px; }
+        input { width: 100%; padding: 12px 14px; margin: 10px 0; background: #1c1c1c; border: 1px solid #333; color: #fff; box-sizing: border-box; border-radius: 6px; font-size: 14px; outline: none; }
+        input:focus { border-color: #ff4747; }
+        button { width: 100%; padding: 12px; background: #ff4747; border: none; color: white; cursor: pointer; font-weight: bold; border-radius: 6px; font-size: 15px; margin-top: 10px; transition: 0.2s; }
+        button:hover { background: #e03e3e; }
+        .error { color: #ff4747; font-size: 13.5px; text-align: center; margin-bottom: 12px; background: rgba(255, 71, 71, 0.1); padding: 8px; border-radius: 4px; border: 1px solid rgba(255, 71, 71, 0.3); }
+        .hint { background: #181924; border: 1px dashed #333; padding: 10px; border-radius: 6px; font-size: 12px; color: #9da3af; margin-top: 20px; text-align: center; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #64748b; text-decoration: none; font-size: 13px; }
+        .back-link:hover { color: #ff4747; }
+    </style>
+</head>
+<body>
+
+<div class="login-box">
+    <h2>VOLT <span style="color:#ff4747;">ADMIN</span></h2>
+    <div id="loginError" class="error" style="display:none;"></div>
+    
+    <form id="adminLoginForm">
+        <input type="text" id="adminUser" placeholder="Username (admin)" required>
+        <input type="password" id="adminPass" placeholder="Password (123)" required>
+        <button type="submit">ENTER SYSTEM MATRIX</button>
+    </form>
+
+    <div class="hint">
+        <strong>⚡ Default Admin Credentials:</strong><br>
+        Username: <code>admin</code> | Password: <code>123</code>
+    </div>
+
+    <a href="index.html" class="back-link">← Return to Customer Storefront</a>
+</div>
+
+<script src="assets/js/db.js"></script>
+<script>
+    document.getElementById('adminLoginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const u = document.getElementById('adminUser').value.trim();
+        const p = document.getElementById('adminPass').value;
+        const res = window.VoltDB.loginAdmin(u, p);
+        const err = document.getElementById('loginError');
+
+        if (res.success) {
+            window.location.href = 'admin_dashboard.html';
+        } else {
+            err.textContent = res.msg;
+            err.style.display = 'block';
+        }
+    });
+</script>
+</body>
+</html>
